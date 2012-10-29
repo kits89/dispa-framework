@@ -4,6 +4,7 @@ package dispa.context;
 public class VirtualIdentity {
 
 	/**
+	 * @uml.property  name="id"
 	 */
 	private int id;
 
@@ -14,7 +15,8 @@ public class VirtualIdentity {
 	
 	/**
 	 * Getter of the property <tt>id</tt>
-	 * @return  Returns the id.
+	 * @return   Returns the id.
+	 * @uml.property  name="id"
 	 */
 	public int getId() {
 		return id;
@@ -22,7 +24,8 @@ public class VirtualIdentity {
 
 	/**
 	 * Setter of the property <tt>id</tt>
-	 * @param id  The id to set.
+	 * @param id   The id to set.
+	 * @uml.property  name="id"
 	 */
 	public void setId(int id) {
 		this.id = id;

@@ -26,36 +26,50 @@ import org.apache.lucene.util.Version;
 public abstract class Searcher {
 
 	/**
+	 * @uml.property  name="queryGenerator"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	private QueryGenerator queryGenerator = null;
 	
 	/**
 	 * The reader of the document index.
+	 * @uml.property  name="documentReader"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	private IndexReader documentReader = null;
 
 	/**
 	 * The reader of the taxonomy index.
+	 * @uml.property  name="taxonomyReader"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	private TaxonomyReader taxonomyReader = null;
 
 	/**
 	 * The reader of the WordNet index.
+	 * @uml.property  name="wordNetReader"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	private IndexReader wordNetReader = null;
 
 	/**
 	 * Lucene's analyzer to parse and tokenize the query.
+	 * @uml.property  name="analyzer"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	protected StandardAnalyzer analyzer = null;
 
 	/**
 	 * Document searcher.
+	 * @uml.property  name="documentSearcher"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	private IndexSearcher documentSearcher = null;
 
 	/**
 	 * WordNet searcher.
+	 * @uml.property  name="wordNetSearcher"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	protected IndexSearcher wordNetSearcher = null;	
 

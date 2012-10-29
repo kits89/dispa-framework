@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="818,479" id="dispa" metadata="uml2-1.0" initialized="true" zoom="0.75" scrolledX="442" scrolledY="273" tag="10" key="32303037303533312D31302064697370612D6672616D65776F726B">
+  <children xsi:type="editmodel:PackageEditModel" name="dispa.classifier" location="65,50" size="395,199" id="dispa.classifier">
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@children.2/@sourceConnections.0 //@children.2/@children.1/@sourceConnections.1 //@children.4/@children.0/@sourceConnections.0" name="Classifier" location="273,50" size="113,122" id="dispa.classifier/Classifier" runTimeClassModel="classify(Ljava.lang.String;),call(),Classifier(Ldispa.classifier.seacher.Searcher;Ldispa.taxonomy.Taxonomy;),query">
+      <children xsi:type="editmodel:CompartmentEditModel" size="88,18">
+        <children xsi:type="editmodel:AttributeEditModel" name="query" id="dispa.classifier/Classifier#query"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="80,54">
+        <children xsi:type="editmodel:MethodEditModel" name="Classifier" id="dispa.classifier/Classifier#Classifier(Ldispa.classifier.seacher.Searcher;Ldispa.taxonomy.Taxonomy;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="call" id="dispa.classifier/Classifier#call()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="classify" id="dispa.classifier/Classifier#classify(Ljava.lang.String;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@children.1/@sourceConnections.0" name="NEDetector" location="50,50" size="173,140" id="dispa.classifier/NEDetector" runTimeClassModel="call(),NEDetector(),query,localIdsFileName,detectIdentifiers(Ljava.lang.String;)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="150,36">
+        <children xsi:type="editmodel:AttributeEditModel" name="localIdsFileName" id="dispa.classifier/NEDetector#localIdsFileName"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="query" id="dispa.classifier/NEDetector#query"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="120,54">
+        <children xsi:type="editmodel:MethodEditModel" name="NEDetector" id="dispa.classifier/NEDetector#NEDetector()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="call" id="dispa.classifier/NEDetector#call()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="detectIdentifiers" id="dispa.classifier/NEDetector#detectIdentifiers(Ljava.lang.String;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+  </children>
+  <children xsi:type="editmodel:PackageEditModel" name="dispa.classifier.seacher" location="21,269" size="622,656" id="dispa.classifier.seacher">
+    <children xsi:type="editmodel:ClassEditModel" name="ElementSearcher" location="427,348" size="171,30" id="dispa.classifier.seacher/ElementSearcher" runTimeClassModel="">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="SimpleSearcher" location="41,74" size="163,86" id="dispa.classifier.seacher/SimpleSearcher" runTimeClassModel="SimpleSearcher(Ljava.lang.String;Ldispa.classifier.seacher.QueryGenerator;),SimpleSearcher(Ljava.lang.String;)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="116,36">
+        <children xsi:type="editmodel:MethodEditModel" name="SimpleSearcher" id="dispa.classifier.seacher/SimpleSearcher#SimpleSearcher(Ljava.lang.String;Ldispa.classifier.seacher.QueryGenerator;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="SimpleSearcher" id="dispa.classifier.seacher/SimpleSearcher#SimpleSearcher(Ljava.lang.String;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.1/@children.3/@sourceConnections.0" autoLocated="true" id="dispa.classifier.seacher/Searcher&lt;-dispa.classifier.seacher/SimpleSearcher" source="//@children.1/@children.1" target="//@children.1/@children.2" targetEnd="//@children.1/@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@children.1/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+        <children xsi:type="editmodel:AssociationEndEditModel" location="81,0" anchorKind="FixedAtEdge" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="66,122" anchorKind="FixedAtEdge"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@children.6/@sourceConnections.0 //@children.1/@children.1/@sourceConnections.0" name="Searcher" location="16,433" size="133,122" id="dispa.classifier.seacher/Searcher" runTimeClassModel="Searcher(Ljava.lang.String;Ldispa.classifier.seacher.QueryGenerator;),Searcher(Ljava.lang.String;),getCardinal(Ljava.lang.String;),facetedSearch(Ljava.lang.String;Ljava.util.ArrayList;)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="110,72">
+        <children xsi:type="editmodel:MethodEditModel" name="Searcher" id="dispa.classifier.seacher/Searcher#Searcher(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="Searcher" id="dispa.classifier.seacher/Searcher#Searcher(Ljava.lang.String;Ldispa.classifier.seacher.QueryGenerator;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="facetedSearch" id="dispa.classifier.seacher/Searcher#facetedSearch(Ljava.lang.String;Ljava.util.ArrayList;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getCardinal" id="dispa.classifier.seacher/Searcher#getCardinal(Ljava.lang.String;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="dispa.classifier.seacher/Searcher@searcher+dispa.classifier/Classifier@" source="//@children.1/@children.2" target="//@children.0/@children.0" targetEnd="//@children.1/@children.2/@sourceConnections.0/@children.2" label="//@children.1/@children.2/@sourceConnections.0/@children.0" sourceEnd="//@children.1/@children.2/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+        <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="searcher" location="133,10" id="dispa.classifier.seacher/Searcher@searcher+dispa.classifier/Classifier@|dispa.classifier.seacher/Searcher#searcher" attachSource="true" multiplicityLabel="//@children.1/@children.2/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.1/@children.2/@sourceConnections.0/@children.1/@children.0" navigable="true">
+          <children xsi:type="editmodel:LabelEditModel" name=" - searcher" location="176,719" size="58,13" anchorKind="FirstPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="176,692" size="7,13" anchorKind="FirstPart"/>
+        </children>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="10,122" id="dispa.classifier.seacher/Searcher@searcher+dispa.classifier/Classifier@|dispa.classifier/Classifier#" roleLabel="//@children.1/@children.2/@sourceConnections.0/@children.2/@children.0">
+          <children xsi:type="editmodel:LabelEditModel" location="297,217" size="0,13" anchorKind="LastPart"/>
+        </children>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="WordNetExtensionSearcher" location="137,315" size="250,86" id="dispa.classifier.seacher/WordNetExtensionSearcher" runTimeClassModel="WordNetExtensionSearcher(Ljava.lang.String;),WordNetExtensionSearcher(Ljava.lang.String;Ldispa.classifier.seacher.QueryGenerator;)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="180,36">
+        <children xsi:type="editmodel:MethodEditModel" name="WordNetExtensionSearcher" id="dispa.classifier.seacher/WordNetExtensionSearcher#WordNetExtensionSearcher(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="WordNetExtensionSearcher" id="dispa.classifier.seacher/WordNetExtensionSearcher#WordNetExtensionSearcher(Ljava.lang.String;Ldispa.classifier.seacher.QueryGenerator;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="dispa.classifier.seacher/Searcher&lt;-dispa.classifier.seacher/WordNetExtensionSearcher" source="//@children.1/@children.3" target="//@children.1/@children.1/@sourceConnections.0" targetEnd="//@children.1/@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@children.3/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+        <children xsi:type="editmodel:AssociationEndEditModel" location="125,0" anchorKind="FixedAtEdge" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="SimpleQueryGenerator" location="400,210" size="216,30" id="dispa.classifier.seacher/SimpleQueryGenerator" runTimeClassModel="">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="dispa.classifier.seacher/QueryGenerator&lt;-dispa.classifier.seacher/SimpleQueryGenerator" source="//@children.1/@children.4" target="//@children.1/@children.5/@sourceConnections.0" targetEnd="//@children.1/@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@children.4/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+        <children xsi:type="editmodel:AssociationEndEditModel" location="108,0" anchorKind="FixedAtEdge" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="WebQueryGenerator" location="235,161" size="197,30" id="dispa.classifier.seacher/WebQueryGenerator" runTimeClassModel="">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.1/@children.4/@sourceConnections.0" autoLocated="true" id="dispa.classifier.seacher/QueryGenerator&lt;-dispa.classifier.seacher/WebQueryGenerator" source="//@children.1/@children.5" target="//@children.1/@children.6" targetEnd="//@children.1/@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@children.5/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+        <children xsi:type="editmodel:AssociationEndEditModel" location="98,0" anchorKind="FixedAtEdge" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="81,30" anchorKind="FixedAtEdge"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@children.5/@sourceConnections.0" name="QueryGenerator" location="401,101" size="163,30" id="dispa.classifier.seacher/QueryGenerator" runTimeClassModel="">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="dispa.classifier.seacher/QueryGenerator@queryGenerator+dispa.classifier.seacher/Searcher@" source="//@children.1/@children.6" target="//@children.1/@children.2" targetEnd="//@children.1/@children.6/@sourceConnections.0/@children.2" label="//@children.1/@children.6/@sourceConnections.0/@children.0" sourceEnd="//@children.1/@children.6/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+        <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="queryGenerator" location="0,20" id="dispa.classifier.seacher/QueryGenerator@queryGenerator+dispa.classifier.seacher/Searcher@|dispa.classifier.seacher/QueryGenerator#queryGenerator" attachSource="true" multiplicityLabel="//@children.1/@children.6/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.1/@children.6/@sourceConnections.0/@children.1/@children.0" navigable="true">
+          <children xsi:type="editmodel:LabelEditModel" name=" - queryGenerator" location="318,369" size="96,13" anchorKind="FirstPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="407,396" size="7,13" anchorKind="FirstPart"/>
+        </children>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="123,0" id="dispa.classifier.seacher/QueryGenerator@queryGenerator+dispa.classifier.seacher/Searcher@|dispa.classifier.seacher/Searcher#"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+  </children>
+  <children xsi:type="editmodel:PackageEditModel" name="dispa.context" location="659,495" size="810,486" id="dispa.context">
+    <children xsi:type="editmodel:ClassEditModel" name="ConnectionContextGenerator" location="312,385" size="259,30" id="dispa.context/ConnectionContextGenerator" runTimeClassModel="">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="VirtualIdentityDetector" location="51,329" size="217,122" id="dispa.context/VirtualIdentityDetector" runTimeClassModel="getNEDetector(),setNEDetector(Ldispa.classifier.NEDetector;),VirtualIdentityDetector(Ldispa.classifier.Classifier;),getVirtualIdentityId(Ljava.lang.String;)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="153,72">
+        <children xsi:type="editmodel:MethodEditModel" name="VirtualIdentityDetector" location="16,56" id="dispa.context/VirtualIdentityDetector#VirtualIdentityDetector(Ldispa.classifier.Classifier;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getNEDetector" id="dispa.context/VirtualIdentityDetector#getNEDetector()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getVirtualIdentityId" id="dispa.context/VirtualIdentityDetector#getVirtualIdentityId(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setNEDetector" id="dispa.context/VirtualIdentityDetector#setNEDetector(Ldispa.classifier.NEDetector;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="dispa.classifier/NEDetector@neDetector+dispa.context/VirtualIdentityDetector@" source="//@children.2/@children.1" target="//@children.0/@children.1" targetEnd="//@children.2/@children.1/@sourceConnections.0/@children.2" label="//@children.2/@children.1/@sourceConnections.0/@children.0" sourceEnd="//@children.2/@children.1/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+        <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="10,0" id="dispa.classifier/NEDetector@neDetector+dispa.context/VirtualIdentityDetector@|dispa.context/VirtualIdentityDetector#" attachSource="true" roleLabel="//@children.2/@children.1/@sourceConnections.0/@children.1/@children.0">
+          <children xsi:type="editmodel:LabelEditModel" location="713,820" size="0,13" anchorKind="FirstPart"/>
+        </children>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="neDetector" location="173,130" id="dispa.classifier/NEDetector@neDetector+dispa.context/VirtualIdentityDetector@|dispa.classifier/NEDetector#neDetector" multiplicityLabel="//@children.2/@children.1/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.2/@children.1/@sourceConnections.0/@children.2/@children.0" navigable="true">
+          <children xsi:type="editmodel:LabelEditModel" name=" - neDetector" location="295,180" size="71,13" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="295,207" size="7,13" anchorKind="LastPart"/>
+        </children>
+      </sourceConnections>
+      <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="dispa.classifier/Classifier@classifier+dispa.context/VirtualIdentityDetector@" source="//@children.2/@children.1" target="//@children.0/@children.0" targetEnd="//@children.2/@children.1/@sourceConnections.1/@children.2" label="//@children.2/@children.1/@sourceConnections.1/@children.0" sourceEnd="//@children.2/@children.1/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+        <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="10,0" id="dispa.classifier/Classifier@classifier+dispa.context/VirtualIdentityDetector@|dispa.context/VirtualIdentityDetector#" attachSource="true" roleLabel="//@children.2/@children.1/@sourceConnections.1/@children.1/@children.0">
+          <children xsi:type="editmodel:LabelEditModel" location="713,820" size="0,13" anchorKind="FirstPart"/>
+        </children>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="classifier" location="113,112" id="dispa.classifier/Classifier@classifier+dispa.context/VirtualIdentityDetector@|dispa.classifier/Classifier#classifier" multiplicityLabel="//@children.2/@children.1/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.2/@children.1/@sourceConnections.1/@children.2/@children.0" navigable="true">
+          <children xsi:type="editmodel:LabelEditModel" name=" - classifier" location="415,180" size="59,13" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="415,207" size="7,13" anchorKind="LastPart"/>
+        </children>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="Context" location="650,304" size="100,68" id="dispa.context/Context" runTimeClassModel="Context(I)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="72,18">
+        <children xsi:type="editmodel:MethodEditModel" name="Context" id="dispa.context/Context#Context(I)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="dispa.context/ConnectionContext&lt;-dispa.context/Context" source="//@children.2/@children.2" target="//@children.2/@children.3" targetEnd="//@children.2/@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+        <children xsi:type="editmodel:AssociationEndEditModel" location="50,0" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="91,68"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@children.2/@sourceConnections.0" name="ConnectionContext" location="609,186" size="183,68" id="dispa.context/ConnectionContext" runTimeClassModel="ConnectionContext(I)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="134,18">
+        <children xsi:type="editmodel:MethodEditModel" name="ConnectionContext" location="-3,52" id="dispa.context/ConnectionContext#ConnectionContext(I)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="dispa.context/VirtualIdentity&lt;-dispa.context/ConnectionContext" source="//@children.2/@children.3" target="//@children.2/@children.4" targetEnd="//@children.2/@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@children.3/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+        <children xsi:type="editmodel:AssociationEndEditModel" location="91,0" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="76,86"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@children.3/@sourceConnections.0" name="VirtualIdentity" location="624,50" size="152,86" id="dispa.context/VirtualIdentity" runTimeClassModel="id,VirtualIdentity(I)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="50,18">
+        <children xsi:type="editmodel:AttributeEditModel" name="id" id="dispa.context/VirtualIdentity#id"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="106,18">
+        <children xsi:type="editmodel:MethodEditModel" name="VirtualIdentity" id="dispa.context/VirtualIdentity#VirtualIdentity(I)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="DoubleclickCookieGenerator" location="50,204" size="257,30" id="dispa.context/DoubleclickCookieGenerator" runTimeClassModel="">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.2/@children.6/@sourceConnections.0" autoLocated="true" id="dispa.context/CookieGenerator&lt;-dispa.context/DoubleclickCookieGenerator" source="//@children.2/@children.5" target="//@children.2/@children.7" targetEnd="//@children.2/@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@children.5/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+        <children xsi:type="editmodel:AssociationEndEditModel" location="128,0" anchorKind="FixedAtEdge" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="84,104" anchorKind="FixedAtEdge"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="GoogleCookieGenerator" location="337,204" size="222,30" id="dispa.context/GoogleCookieGenerator" runTimeClassModel="">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="dispa.context/CookieGenerator&lt;-dispa.context/GoogleCookieGenerator" source="//@children.2/@children.6" target="//@children.2/@children.5/@sourceConnections.0" targetEnd="//@children.2/@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@children.6/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+        <children xsi:type="editmodel:AssociationEndEditModel" location="111,0" anchorKind="FixedAtEdge" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@children.5/@sourceConnections.0" name="CookieGenerator" location="228,50" size="169,104" id="dispa.context/CookieGenerator" runTimeClassModel="getCookies(Ljava.net.URL;),generateCookie(),url">
+      <children xsi:type="editmodel:CompartmentEditModel" size="72,18">
+        <children xsi:type="editmodel:AttributeEditModel" name="url" id="dispa.context/CookieGenerator#url"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="117,36">
+        <children xsi:type="editmodel:MethodEditModel" name="generateCookie" id="dispa.context/CookieGenerator#generateCookie()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getCookies" id="dispa.context/CookieGenerator#getCookies(Ljava.net.URL;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+  </children>
+  <children xsi:type="editmodel:PackageEditModel" name="dispa.server" location="1298,99" size="377,272" id="dispa.server">
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@children.1/@sourceConnections.0" name="PluginConnection" location="228,50" size="173,194" id="dispa.server/PluginConnection" runTimeClassModel="open(),PluginConnection(I),close(),send(Ljava.lang.String;),getRequest(),in,clientSocket,out">
+      <children xsi:type="editmodel:CompartmentEditModel" size="130,54">
+        <children xsi:type="editmodel:AttributeEditModel" name="clientSocket" id="dispa.server/PluginConnection#clientSocket"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="in" id="dispa.server/PluginConnection#in"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="out" id="dispa.server/PluginConnection#out"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="125,90">
+        <children xsi:type="editmodel:MethodEditModel" name="PluginConnection" id="dispa.server/PluginConnection#PluginConnection(I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="close" id="dispa.server/PluginConnection#close()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getRequest" id="dispa.server/PluginConnection#getRequest()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="open" id="dispa.server/PluginConnection#open()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="send" id="dispa.server/PluginConnection#send(Ljava.lang.String;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="DisPAServer" location="50,50" size="136,68" id="dispa.server/DisPAServer" runTimeClassModel="main([Ljava.lang.String;)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="57,18">
+        <children xsi:type="editmodel:MethodEditModel" name="main" id="dispa.server/DisPAServer#main([Ljava.lang.String;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="dispa.server/PluginConnection@pluginConnection+dispa.server/DisPAServer@" source="//@children.3/@children.1" target="//@children.3/@children.0" targetEnd="//@children.3/@children.1/@sourceConnections.0/@children.2" label="//@children.3/@children.1/@sourceConnections.0/@children.0" sourceEnd="//@children.3/@children.1/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+        <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="136,34" id="dispa.server/PluginConnection@pluginConnection+dispa.server/DisPAServer@|dispa.server/DisPAServer#" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="pluginConnection" location="0,34" id="dispa.server/PluginConnection@pluginConnection+dispa.server/DisPAServer@|dispa.server/PluginConnection#pluginConnection" multiplicityLabel="//@children.3/@children.1/@sourceConnections.0/@children.2/@children.2" roleLabel="//@children.3/@children.1/@sourceConnections.0/@children.2/@children.0" orderingLabel="//@children.3/@children.1/@sourceConnections.0/@children.2/@children.1" scopeKind="1" navigable="true">
+          <children xsi:type="editmodel:LabelEditModel" name=" - pluginConnection" location="1377,120" size="106,13" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="{order}" location="1440,160" size="43,13" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="1476,133" size="7,13" anchorKind="LastPart"/>
+        </children>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+  </children>
+  <children xsi:type="editmodel:PackageEditModel" name="dispa.taxonomy" location="749,50" size="547,454" id="dispa.taxonomy">
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@children.3/@sourceConnections.2" name="Taxonomy" location="426,50" size="150,302" id="dispa.taxonomy/Taxonomy" runTimeClassModel="addQuery(Ljava.lang.String;),load(Ljava.lang.String;),getInterests(),loadFromIndex(Ljava.lang.String;),exists(Ljava.lang.String;),getParents(Ljava.lang.String;),addElement(Ldispa.taxonomy.TaxonomyElement;Ljava.lang.String;),save(Ljava.lang.String;),removeElement(Ldispa.taxonomy.TaxonomyElement;Ljava.lang.String;),setInterests(Ljava.util.ArrayList;),Taxonomy(Ljava.lang.String;),getAssignedVisits(Ljava.lang.String;),addVisit(Ljava.lang.String;),findCategory(Ljava.lang.String;)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="127,252">
+        <children xsi:type="editmodel:MethodEditModel" name="Taxonomy" id="dispa.taxonomy/Taxonomy#Taxonomy(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="addElement" id="dispa.taxonomy/Taxonomy#addElement(Ldispa.taxonomy.TaxonomyElement;Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="addQuery" id="dispa.taxonomy/Taxonomy#addQuery(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="addVisit" id="dispa.taxonomy/Taxonomy#addVisit(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="exists" id="dispa.taxonomy/Taxonomy#exists(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="findCategory" id="dispa.taxonomy/Taxonomy#findCategory(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getAssignedVisits" id="dispa.taxonomy/Taxonomy#getAssignedVisits(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getInterests" id="dispa.taxonomy/Taxonomy#getInterests()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getParents" id="dispa.taxonomy/Taxonomy#getParents(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="load" id="dispa.taxonomy/Taxonomy#load(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="loadFromIndex" id="dispa.taxonomy/Taxonomy#loadFromIndex(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="removeElement" id="dispa.taxonomy/Taxonomy#removeElement(Ldispa.taxonomy.TaxonomyElement;Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="save" id="dispa.taxonomy/Taxonomy#save(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setInterests" id="dispa.taxonomy/Taxonomy#setInterests(Ljava.util.ArrayList;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="dispa.taxonomy/Taxonomy@taxonomy+dispa.classifier/Classifier@" source="//@children.4/@children.0" target="//@children.0/@children.0" targetEnd="//@children.4/@children.0/@sourceConnections.0/@children.2" label="//@children.4/@children.0/@sourceConnections.0/@children.0" sourceEnd="//@children.4/@children.0/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+        <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="taxonomy" location="0,60" id="dispa.taxonomy/Taxonomy@taxonomy+dispa.classifier/Classifier@|dispa.taxonomy/Taxonomy#taxonomy" attachSource="true" multiplicityLabel="//@children.4/@children.0/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.4/@children.0/@sourceConnections.0/@children.1/@children.0" navigable="true">
+          <children xsi:type="editmodel:LabelEditModel" name=" # taxonomy" location="1030,110" size="69,13" anchorKind="FirstPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="1092,137" size="7,13" anchorKind="FirstPart"/>
+        </children>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="113,60" id="dispa.taxonomy/Taxonomy@taxonomy+dispa.classifier/Classifier@|dispa.classifier/Classifier#" roleLabel="//@children.4/@children.0/@sourceConnections.0/@children.2/@children.0">
+          <children xsi:type="editmodel:LabelEditModel" location="415,128" size="0,13" anchorKind="LastPart"/>
+        </children>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@children.3/@sourceConnections.0 //@children.4/@children.3/@sourceConnections.1" name="TaxonomyElement" location="132,50" size="178,30" id="dispa.taxonomy/TaxonomyElement" runTimeClassModel="">
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="WebSite" location="52,198" size="106,86" id="dispa.taxonomy/WebSite" runTimeClassModel="WebSite(Ljava.lang.String;),uri">
+      <children xsi:type="editmodel:CompartmentEditModel" size="72,18">
+        <children xsi:type="editmodel:AttributeEditModel" name="uri" id="dispa.taxonomy/WebSite#uri"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="75,18">
+        <children xsi:type="editmodel:MethodEditModel" name="WebSite" id="dispa.taxonomy/WebSite#WebSite(Ljava.lang.String;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="dispa.taxonomy/TaxonomyElement&lt;-dispa.taxonomy/WebSite" source="//@children.4/@children.2" target="//@children.4/@children.3/@sourceConnections.0" targetEnd="//@children.4/@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@children.2/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+        <children xsi:type="editmodel:AssociationEndEditModel" location="53,0" anchorKind="FixedAtEdge" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="Category" location="167,200" size="165,230" id="dispa.taxonomy/Category" runTimeClassModel="addQuery(),getChildren(),assignedVisits,setChildren(Ljava.util.ArrayList;),addVisit(),assignedQueries,name,addElement(Ldispa.taxonomy.TaxonomyElement;),Category(Ljava.lang.String;),removeElement(Ldispa.taxonomy.TaxonomyElement;)">
+      <children xsi:type="editmodel:CompartmentEditModel" size="142,54">
+        <children xsi:type="editmodel:AttributeEditModel" name="assignedQueries" id="dispa.taxonomy/Category#assignedQueries"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="assignedVisits" id="dispa.taxonomy/Category#assignedVisits"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="name" id="dispa.taxonomy/Category#name"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="116,126">
+        <children xsi:type="editmodel:MethodEditModel" name="Category" id="dispa.taxonomy/Category#Category(Ljava.lang.String;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="addElement" id="dispa.taxonomy/Category#addElement(Ldispa.taxonomy.TaxonomyElement;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="addQuery" id="dispa.taxonomy/Category#addQuery()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="addVisit" id="dispa.taxonomy/Category#addVisit()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="getChildren" id="dispa.taxonomy/Category#getChildren()"/>
+        <children xsi:type="editmodel:MethodEditModel" name="removeElement" id="dispa.taxonomy/Category#removeElement(Ldispa.taxonomy.TaxonomyElement;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setChildren" id="dispa.taxonomy/Category#setChildren(Ljava.util.ArrayList;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+      <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.4/@children.2/@sourceConnections.0" autoLocated="true" id="dispa.taxonomy/TaxonomyElement&lt;-dispa.taxonomy/Category" source="//@children.4/@children.3" target="//@children.4/@children.1" targetEnd="//@children.4/@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@children.3/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+        <children xsi:type="editmodel:AssociationEndEditModel" location="110,0" anchorKind="FixedAtEdge" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="34,30" anchorKind="FixedAtEdge"/>
+      </sourceConnections>
+      <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="dispa.taxonomy/TaxonomyElement@children+dispa.taxonomy/Category@" source="//@children.4/@children.3" target="//@children.4/@children.1" targetEnd="//@children.4/@children.3/@sourceConnections.1/@children.2" label="//@children.4/@children.3/@sourceConnections.1/@children.0" sourceEnd="//@children.4/@children.3/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+        <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="71,0" id="dispa.taxonomy/TaxonomyElement@children+dispa.taxonomy/Category@|dispa.taxonomy/Category#" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="children" location="106,30" id="dispa.taxonomy/TaxonomyElement@children+dispa.taxonomy/Category@|dispa.taxonomy/TaxonomyElement#children" multiplicityLabel="//@children.4/@children.3/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.4/@children.3/@sourceConnections.1/@children.2/@children.0" navigable="true">
+          <children xsi:type="editmodel:LabelEditModel" name=" - children" location="993,136" size="54,13" anchorKind="LastPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="*" location="974,136" size="5,13" anchorKind="LastPart"/>
+        </children>
+      </sourceConnections>
+      <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="dispa.taxonomy/Category@root+dispa.taxonomy/Taxonomy@" source="//@children.4/@children.3" target="//@children.4/@children.0" targetEnd="//@children.4/@children.3/@sourceConnections.2/@children.2" label="//@children.4/@children.3/@sourceConnections.2/@children.0" sourceEnd="//@children.4/@children.3/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+        <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" name="root" location="165,75" id="dispa.taxonomy/Category@root+dispa.taxonomy/Taxonomy@|dispa.taxonomy/Category#root" attachSource="true" multiplicityLabel="//@children.4/@children.3/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.4/@children.3/@sourceConnections.2/@children.1/@children.0" navigable="true">
+          <children xsi:type="editmodel:LabelEditModel" name=" - root" location="1087,331" size="32,13" anchorKind="FirstPart"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" location="1087,304" size="7,13" anchorKind="FirstPart"/>
+        </children>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="0,225" id="dispa.taxonomy/Category@root+dispa.taxonomy/Taxonomy@|dispa.taxonomy/Taxonomy#"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=3;Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>

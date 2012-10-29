@@ -24,15 +24,24 @@ import edu.stanford.nlp.util.CoreMap;
 
 public class NEDetector implements Callable<String> {
 	
+	/**
+	 * @uml.property  name="query"
+	 */
 	private String query = null;
 	
 	/**
+	 * @uml.property  name="props"
+	 * @uml.associationEnd  qualifier="constant:java.lang.String java.lang.String"
 	 */
 	Properties props = new Properties();
 	/**
+	 * @uml.property  name="pipeline"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	StanfordCoreNLP pipeline = null;
 	/**
+	 * @uml.property  name="names"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.String"
 	 */
 	List<String> names = null;
 	
@@ -90,10 +99,18 @@ public class NEDetector implements Callable<String> {
 		return identifiers.toString();
 	}
 
+	/**
+	 * @param query
+	 * @uml.property  name="query"
+	 */
 	public void setQuery(String query) {
 		this.query = query;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="query"
+	 */
 	public String getQuery() {
 		return query;
 	}

@@ -13,14 +13,21 @@ import dispa.taxonomy.Taxonomy;
 
 public class Classifier implements Callable<String> {
 	
+	/**
+	 * @uml.property  name="query"
+	 */
 	private String query = null;
 	
-    /** 
+    /**
 	 * The taxonomy of the Open Directory Project.
+	 * @uml.property  name="taxonomy"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	protected Taxonomy taxonomy = null;
 	
 	/**
+	 * @uml.property  name="searcher"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	private Searcher searcher = null;
 
@@ -74,10 +81,18 @@ public class Classifier implements Callable<String> {
 		return weights;
 	}
 
+	/**
+	 * @param query
+	 * @uml.property  name="query"
+	 */
 	public void setQuery(String query) {
 		this.query = query;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="query"
+	 */
 	public String getQuery() {
 		return query;
 	}

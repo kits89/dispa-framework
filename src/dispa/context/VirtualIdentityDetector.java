@@ -12,6 +12,8 @@ import dispa.classifier.NEDetector;
 public class VirtualIdentityDetector {
 
 	/**
+	 * @uml.property  name="classifier"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	private Classifier classifier = null;	
 
@@ -53,6 +55,8 @@ public class VirtualIdentityDetector {
 	}
 
 	/**
+	 * @uml.property  name="neDetector"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	 private NEDetector neDetector = new dispa.classifier.NEDetector();
 

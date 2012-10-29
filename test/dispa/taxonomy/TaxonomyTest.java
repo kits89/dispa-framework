@@ -5,6 +5,9 @@ import org.junit.Assert;
 import junit.framework.TestCase;
 
 public class TaxonomyTest extends TestCase {
+	/**
+	 * @uml.property  name="rootName"
+	 */
 	String rootName = "Top";
 
 	public void testAddQuery() {

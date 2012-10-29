@@ -23,11 +23,14 @@ import org.apache.lucene.store.RAMDirectory;
 public class Taxonomy {
 
 	/**
+	 * @uml.property  name="root"
+	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	private Category root = null;	
 
 	/**
-	 * 
+	 * @uml.property  name="interests"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.String"
 	 */
 	private ArrayList<String> interests = new ArrayList<String>();	
 	
@@ -175,7 +178,8 @@ public class Taxonomy {
 
 	/**
 	 * Getter of the property <tt>root</tt>
-	 * @return  Returns the root.
+	 * @return   Returns the root.
+	 * @uml.property  name="root"
 	 */
 	public Category getRoot() {
 		return root;
@@ -183,7 +187,8 @@ public class Taxonomy {
 
 	/**
 	 * Setter of the property <tt>root</tt>
-	 * @param root  The root to set.
+	 * @param root   The root to set.
+	 * @uml.property  name="root"
 	 */
 	public void setRoot(Category root) {
 		this.root = root;

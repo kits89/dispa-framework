@@ -8,15 +8,22 @@ public class Category extends TaxonomyElement {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * @uml.property  name="name"
+	 */
 	private String name = null; 	
 	/**
+	 * @uml.property  name="assignedVisits"
 	 */
 	private long assignedVisits;
 	/**
+	 * @uml.property  name="assignedQueries"
 	 */
 	private long assignedQueries;
 	
 	/**
+	 * @uml.property  name="children"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="dispa.taxonomy.TaxonomyElement"
 	 */
 	private ArrayList<TaxonomyElement> children = new ArrayList<TaxonomyElement>();
 	
@@ -37,33 +44,37 @@ public class Category extends TaxonomyElement {
 		this.assignedQueries++;
 	}
 	
-	/** 
+	/**
 	 * Getter of the property <tt>queries</tt>
-	 * @return  Returns the queries.
+	 * @return   Returns the queries.
+	 * @uml.property  name="assignedQueries"
 	 */
 	public long getAssignedQueries() {
 		return assignedQueries;
 	}
 
-	/** 
+	/**
 	 * Setter of the property <tt>queries</tt>
-	 * @param queries  The queries to set.
+	 * @param queries   The queries to set.
+	 * @uml.property  name="assignedQueries"
 	 */
 	public void setAssignedQueries(long assignedQueries) {
 		this.assignedQueries = assignedQueries;
 	}
 
-	/** 
+	/**
 	 * Getter of the property <tt>webs</tt>
-	 * @return  Returns the webs.
+	 * @return   Returns the webs.
+	 * @uml.property  name="assignedVisits"
 	 */
 	public long getAssignedVisits() {
 		return assignedVisits;
 	}
 
-	/** 
+	/**
 	 * Setter of the property <tt>webs</tt>
-	 * @param webs  The webs to set.
+	 * @param webs   The webs to set.
+	 * @uml.property  name="assignedVisits"
 	 */
 	public void setAssignedVisits(long assignedVisits) {
 		this.assignedVisits = assignedVisits;
@@ -84,10 +95,18 @@ public class Category extends TaxonomyElement {
 		return children;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="name"
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name
+	 * @uml.property  name="name"
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}

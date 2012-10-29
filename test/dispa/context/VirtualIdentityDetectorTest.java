@@ -10,6 +10,9 @@ import dispa.classifier.seacher.SimpleSearcher;
 import dispa.taxonomy.Taxonomy;
 
 public class VirtualIdentityDetectorTest {
+	/**
+	 * @uml.property  name="indexPath"
+	 */
 	String indexPath = "/home/marcjuarez/Documents/ARES/ODPIndex/0.1";
 			
 	@Test

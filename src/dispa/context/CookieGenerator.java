@@ -7,8 +7,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
+/**
+ * @author  marcjuarez
+ */
 abstract public class CookieGenerator {
 
+	/**
+	 * @uml.property  name="url"
+	 */
 	private String url = null;
 	
 	public List<HttpCookie> generateCookie() {
@@ -36,12 +42,23 @@ abstract public class CookieGenerator {
 		return cookies;	
 	}
 	
+	/**
+	 * @uml.property  name="connection"
+	 */
 	abstract protected URL getConnection();
 	
+	/**
+	 * @param newUrl
+	 * @uml.property  name="url"
+	 */
 	public void setUrl(String newUrl) {
 		this.url = newUrl;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="url"
+	 */
 	public String getUrl() {
 		return this.url;
 	}
