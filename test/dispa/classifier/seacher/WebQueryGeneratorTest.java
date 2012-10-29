@@ -10,11 +10,30 @@ public class WebQueryGeneratorTest {
 	public void testGenerateQuery() {
 		WebQueryGenerator webQueryGenerator = new WebQueryGenerator();
 		
-		String query = "example query for test";
+		// Only description case
+		String fbDescription = "¡Bienvenido a Facebook en Español (España)! " +
+				"Facebook es una herramienta social que pone en contacto a la" +
+				" gente con sus amigos y con otras personas que trabajan, " +
+				"estudian y viven en su entorno. La gente usa Facebook para " +
+				"estar en contacto con amigos, subir un número ilimitado de " +
+				"fotos, compartir enlaces y vídeos, y saber más sobre las " +
+				"personas que conoce.";
+		String fbQuery = webQueryGenerator.generateQuery("http://www.facebook.com");
 		
-		String generatedQuery = webQueryGenerator.generateQuery(query);
+		assertEquals(fbDescription, fbQuery);
 		
-		assertEquals(query, generatedQuery);
+		// Keywords case
+		String bbcKeywords = "BBC, bbc.co.uk, bbc.com, Search, British " +
+				"Broadcasting Corporation, BBC iPlayer, BBCi";
+		String bbcQuery = webQueryGenerator.generateQuery("http://www.bbc.co.uk/");		
+		
+		assertEquals(bbcQuery, bbcKeywords);
+		
+		// No keywords, no description		
+		String pipeQuery = webQueryGenerator.generateQuery("http://en.wikipedia.org/wiki/Battle_of_Bicocca");		
+			
+		System.out.println(pipeQuery);
+		
 	}
 
 }
