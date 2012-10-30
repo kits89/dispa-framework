@@ -3,6 +3,7 @@ package dispa.context;
 import static org.junit.Assert.*;
 
 import java.net.HttpCookie;
+import java.net.URL;
 import java.util.List;
 
 import org.junit.Assert;
@@ -21,12 +22,12 @@ public class DoubleclickCookieGeneratorTest {
 	public void testGenerateCookie() {
 		DoubleclickCookieGenerator dc = new DoubleclickCookieGenerator();
 		
-//		List<HttpCookie> cookies1 = gc.getConnection1();
-//		
-//		List<HttpCookie> cookies2 = gc.getConnection1();
-//		
+		URL cookies1 = dc.getConnection();
+		
+		URL cookies2 = dc.getConnection();
+		
 		// Generates different cookies
-//		Assert.assertNotSame(cookies1.toArray(), cookies2.toArray());
+		//Assert.assertNotSame(cookies1.toArray(), cookies2.toArray());
 	}
 
 }

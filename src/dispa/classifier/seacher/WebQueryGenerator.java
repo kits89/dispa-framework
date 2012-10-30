@@ -14,7 +14,6 @@ import org.jsoup.select.Elements;
 
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.l3s.boilerpipe.extractors.ArticleExtractor;
-import de.l3s.boilerpipe.extractors.DefaultExtractor;
 
 public class WebQueryGenerator extends QueryGenerator {
 	@Override

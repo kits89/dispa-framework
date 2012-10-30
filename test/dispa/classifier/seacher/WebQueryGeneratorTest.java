@@ -30,9 +30,9 @@ public class WebQueryGeneratorTest {
 		assertEquals(bbcQuery, bbcKeywords);
 		
 		// No keywords, no description		
-		String pipeQuery = webQueryGenerator.generateQuery("http://en.wikipedia.org/wiki/Battle_of_Bicocca");		
-			
-		System.out.println(pipeQuery);
+//		String pipeQuery = webQueryGenerator.generateQuery("http://es.wikipedia.org/wiki/Jorge_Lorenzo");		
+//			
+//		System.out.println(pipeQuery);
 		
 	}
 
