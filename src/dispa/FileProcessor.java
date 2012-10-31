@@ -20,8 +20,8 @@ import dispa.classifier.Classifier;
 import dispa.classifier.seacher.Searcher;
 import dispa.classifier.seacher.SimpleSearcher;
 import dispa.classifier.seacher.WordNetExtensionSearcher;
-import dispa.context.VirtualIdentity;
-import dispa.context.VirtualIdentityDetector;
+import dispa.contexts.ContextManager;
+import dispa.contexts.VirtualIdentityGenerator;
 import dispa.taxonomy.Taxonomy;
 
 
@@ -115,8 +115,8 @@ public class FileProcessor {
 			
 			Classifier classifier = new Classifier(searcher, taxonomy);
 			
-			// Build virtualIdentityGenerator
-			VirtualIdentityDetector vid = new VirtualIdentityDetector(classifier);
+			// Build contextManager
+			ContextManager contextManager = new ContextManager(classifier);
 
 			// Read file
 			BufferedReader br = null;
@@ -138,10 +138,10 @@ public class FileProcessor {
 				System.out.println("\nQuery: " + query);
 
 				// Get virtual identity
-				VirtualIdentity id = vid.getVirtualIdentityId(query);
+				int id = contextManager.getId(query);
 				
 				// Write query to a directory associated to the VirtualIdentity
-				write(String.valueOf(id.getId()), query);
+				write(String.valueOf(id), query);
 			}
 		} catch (ParseException e) {
 			// oops, something went wrong

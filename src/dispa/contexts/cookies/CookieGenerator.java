@@ -1,4 +1,4 @@
-package dispa.context;
+package dispa.contexts.cookies;
 
 import java.io.IOException;
 
@@ -15,20 +15,19 @@ abstract public class CookieGenerator {
 
 	protected CookieStore cookieStore = new BasicCookieStore();
 
-	public void generateCookie(String url) {
-		DefaultHttpClient httpclient = new DefaultHttpClient();
-		this.setInitialCookies();		
-		httpclient.setCookieStore(this.cookieStore);				
-		HttpGet httpget = new HttpGet(url);
+	public CookieStore generateCookie(CookieStore cookieStore) {
+		DefaultHttpClient httpclient = new DefaultHttpClient();		
+		httpclient.setCookieStore(cookieStore);			
+		HttpGet httpGet = this.setInitialCookies();
 
 		try {
-			httpclient.execute(httpget);
+			httpclient.execute(httpGet);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}				
-	}
-	
-	abstract protected void setInitialCookies();
+		}		
+		return cookieStore;
+	}	
+	abstract protected HttpGet setInitialCookies();
 }

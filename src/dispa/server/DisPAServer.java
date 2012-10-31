@@ -15,8 +15,8 @@ import dispa.classifier.seacher.Searcher;
 import dispa.classifier.seacher.SimpleSearcher;
 import dispa.classifier.seacher.WebQueryGenerator;
 import dispa.classifier.seacher.WordNetExtensionSearcher;
-import dispa.context.VirtualIdentity;
-import dispa.context.VirtualIdentityDetector;
+import dispa.contexts.ContextManager;
+import dispa.contexts.VirtualIdentityGenerator;
 import dispa.taxonomy.Taxonomy;
 
 
@@ -99,7 +99,7 @@ public class DisPAServer {
 					new SimpleSearcher(INDEX_DIR, new WebQueryGenerator()), taxonomy);
 			
 			// Initialize id detector
-			VirtualIdentityDetector vid = new VirtualIdentityDetector(
+			ContextManager contextManager = new ContextManager(
 					new Classifier(searcher, taxonomy));
 			
 			// Set up the plugin connection
@@ -121,12 +121,12 @@ public class DisPAServer {
 					
 					// If message is not empty
 					if (!contents.isEmpty()) {
-						VirtualIdentity virtualIdentity = null;
+						int id = 0;
 						switch(opCode) {
 						
 							// If contents are a query
 							case QRY:
-								virtualIdentity = vid.getVirtualIdentityId(contents);															
+								id = contextManager.getId(contents);															
 								break;
 								
 							// If contents are a web resource
@@ -141,7 +141,7 @@ public class DisPAServer {
 							default:
 								System.err.println("The opcode is not valid, a message of error must be sent.");
 						}
-						pluginConnection.send(Integer.toString(virtualIdentity.getId()));
+						pluginConnection.send(Integer.toString(id));
 					}		
 				}
 			} catch(Exception e) {

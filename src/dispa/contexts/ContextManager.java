@@ -1,27 +1,60 @@
-package dispa.context;
+package dispa.contexts;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+
 import dispa.classifier.Classifier;
 import dispa.classifier.NEDetector;
 
-
-public class VirtualIdentityDetector {
-
+public class ContextManager {
+	VirtualIdentityGenerator vig = new VirtualIdentityGenerator();
+	
 	/**
 	 * @uml.property  name="classifier"
 	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	private Classifier classifier = null;	
+	
+	/**
+	 * @uml.property  name="neDetector"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
+	 private NEDetector neDetector = new dispa.classifier.NEDetector();
 
-	public VirtualIdentityDetector(Classifier newClassifier) {
-		classifier = newClassifier;
+	 /** 
+	  * Getter of the property <tt>nEDetector</tt>
+	  * @return  Returns the neDetector.
+	  */
+	 public NEDetector getNEDetector() {
+		 return neDetector;
+	 }
+
+	 /** 
+	  * Setter of the property <tt>nEDetector</tt>
+	  * @param nEDetector  The neDetector to set.
+	  */
+	 public void setNEDetector(NEDetector neDetector) {
+		 this.neDetector = neDetector;
+	 }
+	 
+	 public ContextManager(Classifier newClassifier) {
+		 classifier = newClassifier;
+	 }
+	 
+	
+	public Context generateContext() {
+		HttpContext connContext = vig.generateVirtualIdentity(
+				new BasicHttpContext());
+		Context newContext = new Context(connContext);
+		return newContext;
 	}
-
-	public VirtualIdentity getVirtualIdentityId(String query) {
+	
+	public int getId(String query) {
 		// Pool of two threads
 		ExecutorService service = Executors.newFixedThreadPool(2);
 		
@@ -51,30 +84,6 @@ public class VirtualIdentityDetector {
 		// Shutdown thread pool
 		service.shutdown();
 		
-		return (new VirtualIdentity(id));		
+		return id;		
 	}
-
-	/**
-	 * @uml.property  name="neDetector"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
-	 private NEDetector neDetector = new dispa.classifier.NEDetector();
-
-	 /** 
-	  * Getter of the property <tt>nEDetector</tt>
-	  * @return  Returns the neDetector.
-	  */
-	 public NEDetector getNEDetector() {
-		 return neDetector;
-	 }
-
-	 /** 
-	  * Setter of the property <tt>nEDetector</tt>
-	  * @param nEDetector  The neDetector to set.
-	  */
-	 public void setNEDetector(NEDetector neDetector) {
-		 this.neDetector = neDetector;
-	 }
-
-
 }
