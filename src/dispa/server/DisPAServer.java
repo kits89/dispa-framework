@@ -30,7 +30,7 @@ public class DisPAServer {
 	private final static int QRY = 0;
 	/** Constant for web messages */
 	private final static int VST = 1;
-	private final static int ERR = 2;
+	//private final static int ERR = 2;
 	private final static int OFF = 3;
 	private final static String taxonomyFileName = "taxonomy.ser";
 	/**
