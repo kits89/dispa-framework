@@ -16,12 +16,12 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 
-import dispa.classifier.Classifier;
-import dispa.classifier.seacher.Searcher;
-import dispa.classifier.seacher.SimpleSearcher;
-import dispa.classifier.seacher.WordNetExtensionSearcher;
-import dispa.contexts.ContextManager;
-import dispa.contexts.VirtualIdentityGenerator;
+import dispa.bypass.classification.Classifier;
+import dispa.bypass.classification.search.Searcher;
+import dispa.bypass.classification.search.SimpleSearcher;
+import dispa.bypass.classification.search.WordNetExtensionSearcher;
+import dispa.bypass.contexts.ContextManager;
+import dispa.bypass.queries.Query;
 import dispa.taxonomy.Taxonomy;
 
 
@@ -49,7 +49,9 @@ public class FileProcessor {
 			options.addOption("F", true, "field separator.");
 			options.addOption("N", true, "number of the query field.");
 			options.addOption("t", true, "taxonomy file name.");
-
+			options.addOption("n", true, "Enable Named Entity recognition.");
+			options.addOption("h", true, "print this message.");
+			
 			// Parse the command line arguments
 			CommandLineParser parser = new PosixParser();
 			CommandLine cmd = parser.parse(options, args);
@@ -116,7 +118,7 @@ public class FileProcessor {
 			Classifier classifier = new Classifier(searcher, taxonomy);
 			
 			// Build contextManager
-			ContextManager contextManager = new ContextManager(classifier);
+			ContextManager contextManager = new ContextManager(classifier, cmd.hasOption("n"));
 
 			// Read file
 			BufferedReader br = null;
@@ -138,7 +140,7 @@ public class FileProcessor {
 				System.out.println("\nQuery: " + query);
 
 				// Get virtual identity
-				int id = contextManager.getId(query);
+				int id = contextManager.getContextId(new Query(query));
 				
 				// Write query to a directory associated to the VirtualIdentity
 				write(String.valueOf(id), query);

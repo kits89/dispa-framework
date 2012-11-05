@@ -1,0 +1,32 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/usr/bin/npm', 'link' ]
+info using npm@1.1.4
+info using node@v0.6.12
+verbose config file /home/marcjuarez/.npmrc
+verbose config file /usr/etc/npmrc
+verbose config file /usr/share/npm/npmrc
+ERR! Error: Invalid 'version' field: 0.1
+ERR! 'version' Must be X.Y.Z, with an optional trailing tag.
+ERR! See the section on 'version' in `npm help json`
+ERR!     at /usr/share/npm/lib/utils/read-json.js:368:13
+ERR!     at /usr/share/npm/lib/utils/read-json.js:166:33
+ERR!     at P (/usr/share/npm/lib/utils/read-json.js:142:41)
+ERR!     at /usr/share/npm/lib/utils/read-json.js:108:7
+ERR!     at [object Object].<anonymous> (fs.js:115:5)
+ERR!     at [object Object].emit (events.js:64:17)
+ERR!     at afterRead (fs.js:1117:12)
+ERR!     at Object.wrapper [as oncomplete] (fs.js:254:17)
+ERR! You may report this log at:
+ERR!     <http://bugs.debian.org/npm>
+ERR! or use
+ERR!     reportbug --attach /home/marcjuarez/Dropbox/IIIA/ARES/Workspace/ProjectsPaper1/Software/DisPA/0.2 (simplified)/npm-debug.log npm
+ERR! 
+ERR! System Linux 3.2.0-32-generic
+ERR! command "node" "/usr/bin/npm" "link"
+ERR! cwd /home/marcjuarez/Dropbox/IIIA/ARES/Workspace/ProjectsPaper1/Software/DisPA/0.2 (simplified)
+ERR! node -v v0.6.12
+ERR! npm -v 1.1.4
+ERR! message Invalid 'version' field: 0.1
+ERR! message 'version' Must be X.Y.Z, with an optional trailing tag.
+ERR! message See the section on 'version' in `npm help json`
+verbose exit [ 1, true ]
