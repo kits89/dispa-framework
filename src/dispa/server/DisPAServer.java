@@ -175,7 +175,8 @@ public class DisPAServer {
 							
 							Query q1 = contextManager.queryCache.get(q.getId());
 							if (q1 != null) {
-								results = q1.getResults();
+								q = q1;
+								results = q.getResults();
 							} else {				
 								int id = contextManager.getContextId(q);
 								c = contextManager.contextCache.get(id);
@@ -185,7 +186,7 @@ public class DisPAServer {
 								}
 								contextManager.queryCache.put(q.getId(), q);
 								results = resultsFecther.fetch(c, q);
-								q.setResults(results);
+								q.setResults(results);							
 							}							
 
 							// Add query
