@@ -14,6 +14,7 @@ import org.apache.lucene.facet.taxonomy.CategoryPath;
 import org.apache.lucene.facet.taxonomy.TaxonomyReader;
 import org.apache.lucene.facet.taxonomy.directory.DirectoryTaxonomyReader;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.MultiCollector;
 import org.apache.lucene.search.Query;
@@ -25,6 +26,10 @@ import org.apache.lucene.util.Version;
 
 public abstract class Searcher {
 
+	private final String[] fields = 
+		{"descriptionODP", "keywords", "content"};
+	
+	MultiFieldQueryParser queryParser = null;
 	/**
 	 * @uml.property  name="queryGenerator"
 	 * @uml.associationEnd  multiplicity="(1 1)"
@@ -46,13 +51,6 @@ public abstract class Searcher {
 	private TaxonomyReader taxonomyReader = null;
 
 	/**
-	 * The reader of the WordNet index.
-	 * @uml.property  name="wordNetReader"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
-	private IndexReader wordNetReader = null;
-
-	/**
 	 * Lucene's analyzer to parse and tokenize the query.
 	 * @uml.property  name="analyzer"
 	 * @uml.associationEnd  multiplicity="(1 1)"
@@ -66,13 +64,6 @@ public abstract class Searcher {
 	 */
 	private IndexSearcher documentSearcher = null;
 
-	/**
-	 * WordNet searcher.
-	 * @uml.property  name="wordNetSearcher"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
-	protected IndexSearcher wordNetSearcher = null;	
-
 	public Searcher(String indexDir) {
 		queryGenerator = new SimpleQueryGenerator();
 		initialize(indexDir);
@@ -84,10 +75,10 @@ public abstract class Searcher {
 	}
 	
 	private void initialize(String indexDir) {
+				
 		// Files of index paths
 		File documentFile = new File(indexDir + "/Index");
 		File taxonomyFile = new File(indexDir + "/Taxonomy");
-		File wordNetFile = new File(indexDir + "/Syns");
 
 		/*
 		 *  Indicate index directories.
@@ -95,13 +86,10 @@ public abstract class Searcher {
 		 */
 		FSDirectory documentsIndex = null;
 		RAMDirectory taxonomyIndex = null;
-		RAMDirectory wordNetIndex = null;
 		try {
 			documentsIndex = new NIOFSDirectory(documentFile);
 			taxonomyIndex = new RAMDirectory(
 					new NIOFSDirectory(taxonomyFile));
-			wordNetIndex = new RAMDirectory(
-					new NIOFSDirectory(wordNetFile));
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(-1);
@@ -113,12 +101,15 @@ public abstract class Searcher {
 		 */
 		analyzer = new StandardAnalyzer(Version.LUCENE_36);
 
+		// Query parser for all searchers
+		queryParser = new MultiFieldQueryParser(Version.LUCENE_36, 
+				this.fields, analyzer);
+				
 		// Open readers for search
 		try {
 			documentReader = IndexReader.open(documentsIndex);
 			taxonomyReader = new DirectoryTaxonomyReader(
 					taxonomyIndex);
-			wordNetReader = IndexReader.open(wordNetIndex);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -126,14 +117,14 @@ public abstract class Searcher {
 
 		// Instantiate the searchers
 		documentSearcher = new IndexSearcher(documentReader);
-		wordNetSearcher = new IndexSearcher(wordNetReader);
 	}
 	
 	/**
 	 * @param query
 	 * @return 
 	 */
-	public List<FacetResult> facetedSearch(String resource, ArrayList<String> interests){
+	public List<FacetResult> facetedSearch(String resource, 
+				ArrayList<String> interests) {
 		int numTopDocuments = 10, numTopCategories = 10;
 		
 		// Build query

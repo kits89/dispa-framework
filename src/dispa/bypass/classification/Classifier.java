@@ -37,7 +37,7 @@ public class Classifier implements Callable<String> {
 	}
 
 	public String classify(String resource) {
-		String maxCategoryPath = null;
+		String maxCategoryPath = "Others";
 		double maxValue = 0.0;
 		
 		// Get hits of the search
@@ -70,7 +70,7 @@ public class Classifier implements Callable<String> {
 					long visits = taxonomy.getAssignedVisits(categoryPath);
 					int cardinal = searcher.getCardinal(categoryPath);
 					double weight = (count * (1+visits)) / (1+cardinal);
-					weights.put(categoryPath, weight);					
+					weights.put(categoryPath, weight);
 				}
 			}
 		}

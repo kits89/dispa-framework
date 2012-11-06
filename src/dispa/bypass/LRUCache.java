@@ -13,7 +13,7 @@ import java.util.Map;
  * @param <K>
  * 		the key of the cache entry.
  * @param <V>
- * 		the value of the entry associated to <code><K></code>.
+ * 		the value of the entry associated to <K>.
  * @see java.util.LinkedHashMap
  */
 public class LRUCache<K, V> extends LinkedHashMap<K, V>

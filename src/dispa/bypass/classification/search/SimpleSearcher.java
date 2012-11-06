@@ -1,9 +1,7 @@
 package dispa.bypass.classification.search;
 
 import org.apache.lucene.queryParser.ParseException;
-import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.util.Version;
 
 public class SimpleSearcher extends Searcher {
 
@@ -20,8 +18,7 @@ public class SimpleSearcher extends Searcher {
 		// Create the query		
 		Query query = null;
 		try {
-			query = new QueryParser(Version.LUCENE_36, "Contents", analyzer)
-				.parse(strQuery);
+			query = this.queryParser.parse(strQuery);
 		} catch (ParseException e) {
 			e.printStackTrace();					
 		}

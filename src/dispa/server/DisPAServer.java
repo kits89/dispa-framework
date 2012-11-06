@@ -186,7 +186,7 @@ public class DisPAServer {
 								}
 								contextManager.queryCache.put(q.getId(), q);
 								results = resultsFecther.fetch(c, q);
-								q.setResults(results);							
+								q.setResults(results);
 							}							
 
 							// Add query

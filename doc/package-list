@@ -1,6 +1,10 @@
 dispa
-dispa.classifier
-dispa.classifier.seacher
-dispa.context
+dispa.bypass
+dispa.bypass.classification
+dispa.bypass.classification.search
+dispa.bypass.contexts
+dispa.bypass.queries
+dispa.bypass.virtualidentities
+dispa.bypass.virtualidentities.cookies
 dispa.server
 dispa.taxonomy

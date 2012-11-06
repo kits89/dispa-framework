@@ -2,6 +2,7 @@
 
 //Gets and sends query to add-on
 function sendQuery() {
+	$("#rso").empty();
     if ($("#q").val()) {
     	//$("#center_col").html("<img src='./img/loading.gif' alt='loading...'></img>");
     	self.port.emit("querySent", $("#q").val());
@@ -12,7 +13,7 @@ function sendQuery() {
 $("#btnS").on("click", sendQuery);
 $(document).on("keypress", function(event) {
 	if (event.keyCode == 13) {
-		event.preventDefault();
+		event.preventDefault();		
 		sendQuery();
 	}
 });
