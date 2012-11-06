@@ -12,6 +12,8 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import dispa.bypass.classification.Classifier;
 import dispa.bypass.classification.search.Searcher;
@@ -169,7 +171,7 @@ public class DisPAServer {
 							Query q = new Query(contents);
 							System.out.println("[DisPA Server] - Query: " + q.getText());
 							Context c = null;	
-							String results = null;
+							Elements results = null;
 							
 							Query q1 = contextManager.queryCache.lookUp(q);
 							if (q1 != null) {
@@ -183,13 +185,16 @@ public class DisPAServer {
 								}
 								contextManager.queryCache.store(q);
 								results = resultsFecther.fetch(c, q);
+								q.setResults(results);
 							}							
 
 							// Add query
 							taxonomy.addQuery(q.getCategory());
 							
 							// Send results back
-							pluginConnection.send(RES + "|" + results);
+							for (Element e : results) {
+								pluginConnection.send(RES + "|" + e.outerHtml());
+							}							
 							break;
 
 							// If contents are a web resource

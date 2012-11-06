@@ -3,7 +3,7 @@
 //Gets and sends query to add-on
 function sendQuery() {
     if ($("#q").val()) {
-    	$("#center_col").html("<img src='./img/loading.gif' alt='loading...'></img>");
+    	//$("#center_col").html("<img src='./img/loading.gif' alt='loading...'></img>");
     	self.port.emit("querySent", $("#q").val());
     }
 }
@@ -18,7 +18,8 @@ $(document).on("keypress", function(event) {
 });
 
 // When the response arrives is loaded on a new document
-self.port.on("loadResponse", function(resListDOM) {
-	// Load the results DOM
-    $("#center_col").html($("#center_col", resListDOM).html());
+self.port.on("loadResponse", function(result) {
+	// Load the results DOM	
+	$("#ires ol").append(result);
+    //$("#center_col").html($("#center_col", resListDOM).html());
 });

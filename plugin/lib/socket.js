@@ -26,17 +26,14 @@ exports.connect = function(server, port, data, callback) {
         	console.log("[GooPIR] - Connected to GoopirServer");
         },
 
-        onStopRequest: function(request, context, status) {
-        	callback(this.receivedData.join(''));        	
+        onStopRequest: function(request, context, status) {        	     	
             instream.close();
             outstream.close();
         }, 
 
         onDataAvailable: function(request, context, inputStream, offset, count) {
         	var data = instream.read(count).replace(/\n/gm,'');        	
-			console.log(data);
-	        this.receivedData.push(data);
-
+	        callback(data);   
         }
     };
 

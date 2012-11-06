@@ -11,6 +11,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import dispa.bypass.contexts.Context;
 
@@ -27,8 +30,8 @@ public class ResultsFetcher {
 		this.numResults = Integer.toString(numResults);
 		this.language = language;
 	}
-	public String fetch(Context localContext, Query query) {
-		String results = null;
+	public Elements fetch(Context localContext, Query query) {
+		Elements results = null;
 		URIBuilder builder = new URIBuilder();
 		builder.setScheme("http").setHost("www.google.com").setPath("/search")
 		    .setParameter("safe", "off")
@@ -43,9 +46,15 @@ public class ResultsFetcher {
 
 			HttpResponse response = httpclient.execute(httpget, 
 					localContext.getConnextionContext());
+			
 			HttpEntity entity = response.getEntity();
 			
-			results = EntityUtils.toString(entity);
+			String resultsHTML = EntityUtils.toString(entity);
+			
+			Document doc = Jsoup.parse(resultsHTML);
+			
+			results = doc.select("li.g");
+			
 			EntityUtils.consume(entity);
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block

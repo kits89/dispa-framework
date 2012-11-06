@@ -2,13 +2,15 @@ package dispa.bypass.queries;
 
 import java.io.Serializable;
 
+import org.jsoup.select.Elements;
+
 public class Query implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	String text = null;
-	String results = null;
+	Elements results = null;
 	String category = null;
 	
 	public String getCategory() {
@@ -23,10 +25,10 @@ public class Query implements Serializable {
 		this.text = newText;
 	}
 	
-	public void setResults(String newResults) {
+	public void setResults(Elements newResults) {
 		this.results = newResults;
 	}
-	public String getResults() {
+	public Elements getResults() {
 		return results;
 	}
 
