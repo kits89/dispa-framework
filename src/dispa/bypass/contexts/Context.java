@@ -13,6 +13,14 @@ public class Context implements Serializable {
 	HttpContext connectionContext = null;
 	int id = 0;
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Context(int newId) {
 		this.id = newId;
 	}

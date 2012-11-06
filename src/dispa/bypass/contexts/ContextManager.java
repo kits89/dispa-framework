@@ -14,15 +14,15 @@ import java.util.concurrent.Future;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
-import dispa.bypass.Cache;
+import dispa.bypass.LRUCache;
 import dispa.bypass.classification.Classifier;
 import dispa.bypass.classification.NEDetector;
 import dispa.bypass.queries.Query;
 import dispa.bypass.virtualidentities.VirtualIdentityGenerator;
 
 public class ContextManager {
-	public Cache<Query> queryCache = new Cache<Query>(15);
-	public Cache<Context> contextCache = new Cache<Context>(40);
+	public LRUCache<Integer, Query> queryCache = new LRUCache<Integer, Query>(15);
+	public LRUCache<Integer, Context> contextCache = new LRUCache<Integer, Context>(40);
 
 	VirtualIdentityGenerator vig = new VirtualIdentityGenerator();
 
@@ -37,10 +37,6 @@ public class ContextManager {
 	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
 	private NEDetector neDetector = null;
-
-	public void addQuery(Query q) {
-		queryCache.push(q);
-	}
 
 	public ContextManager(Classifier newClassifier, boolean ner) {
 		classifier = newClassifier;
@@ -105,8 +101,8 @@ public class ContextManager {
 			FileInputStream fileIn =
 					new FileInputStream(contextsFileName);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
-			this.contextCache = (Cache<Context>) in.readObject();
-			this.queryCache = (Cache<Query>) in.readObject();
+			this.contextCache = (LRUCache<Integer, Context>) in.readObject();
+			this.queryCache = (LRUCache<Integer, Query>) in.readObject();
 			in.close();
 			fileIn.close();
 		} catch(IOException e) {

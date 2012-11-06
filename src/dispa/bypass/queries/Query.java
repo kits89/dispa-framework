@@ -5,10 +5,21 @@ import java.io.Serializable;
 import org.jsoup.select.Elements;
 
 public class Query implements Serializable {
+	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	int id = 0;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	String text = null;
 	Elements results = null;
 	String category = null;
@@ -23,6 +34,7 @@ public class Query implements Serializable {
 
 	public Query(String newText) {
 		this.text = newText;
+		this.id = newText.toLowerCase().hashCode();
 	}
 	
 	public void setResults(Elements newResults) {

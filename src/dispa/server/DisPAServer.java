@@ -173,17 +173,17 @@ public class DisPAServer {
 							Context c = null;	
 							Elements results = null;
 							
-							Query q1 = contextManager.queryCache.lookUp(q);
+							Query q1 = contextManager.queryCache.get(q.getId());
 							if (q1 != null) {
 								results = q1.getResults();
 							} else {				
 								int id = contextManager.getContextId(q);
-								c = contextManager.contextCache.lookUp(new Context(id));
+								c = contextManager.contextCache.get(id);
 								if (c == null) {
-									c = contextManager.contextCache
-											.store(contextManager.generateContext(id));
+									c = contextManager.generateContext(id);
+									contextManager.contextCache.put(id, c);
 								}
-								contextManager.queryCache.store(q);
+								contextManager.queryCache.put(q.getId(), q);
 								results = resultsFecther.fetch(c, q);
 								q.setResults(results);
 							}							
