@@ -28,6 +28,11 @@ public class Context implements Externalizable {
 		this.id = newId;
 	}
 	
+	/**
+	 * Default constructor needed to deserialize Context
+	 */
+	public Context() {
+	}
 	public Context(int newId, HttpContext newConnContext) {
 		this.id = newId;
 		this.connectionContext = newConnContext;
@@ -55,12 +60,12 @@ public class Context implements Externalizable {
 	public void readExternal(ObjectInput in) throws IOException,
 			ClassNotFoundException {
 		id = in.readInt();
-		connectionContext.setAttribute("cookie-store", in.readObject());
+		//connectionContext.setAttribute("cookie-store", in.readObject());
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput out) throws IOException {
 		out.writeInt(id);
-		out.writeObject(connectionContext.getAttribute("cookie-store"));		
+		//out.writeObject(connectionContext.getAttribute("cookie-store"));		
 	}
 }
