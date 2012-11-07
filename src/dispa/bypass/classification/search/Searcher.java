@@ -27,7 +27,7 @@ import org.apache.lucene.util.Version;
 public abstract class Searcher {
 
 	private final String[] fields = 
-		{"descriptionODP", "keywords", "content"};
+		{"descriptionODP", "descriptionTag", "keywords", "content"};
 	
 	MultiFieldQueryParser queryParser = null;
 	/**
