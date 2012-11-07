@@ -12,8 +12,6 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import dispa.bypass.classification.Classifier;
 import dispa.bypass.classification.search.Searcher;
@@ -42,7 +40,7 @@ public class DisPAServer {
 	private final static int RES = 4;
 	private final static String taxonomyFileName = "taxonomy.ser";
 	private final static String contextsFileName = "contexts.ser";
-	
+
 	/**
 	 * Class to handle the connection with the plug-in
 	 * @uml.property  name="pluginConnection"
@@ -137,7 +135,7 @@ public class DisPAServer {
 
 			// Initialize context manager
 			ContextManager contextManager = new ContextManager(
-					new Classifier(searcher, taxonomy), cmd.hasOption("n"));;
+					new Classifier(searcher, taxonomy), cmd.hasOption("n"));
 			if ((new File(contextsFileName)).exists()) {
 				contextManager.load(contextsFileName);
 			}	
@@ -159,49 +157,57 @@ public class DisPAServer {
 
 					// Parse message
 					String[] msgArray = msg.split("\\|");
-					int opCode = Integer.parseInt(msgArray[0]);
-					String contents = msgArray[1];
+					int opCode = Integer.parseInt(msgArray[0]);							
 
-					// If message is not empty
-					if (!contents.isEmpty()) {
-						switch(opCode) {
-
-						// If contents are a query
+					switch(opCode) {							
 						case QRY:
-							Query q = new Query(contents);
-							System.out.println("[DisPA Server] - Query: " + q.getText());
-							Context c = null;	
-							Elements results = null;
-							
-							Query q1 = contextManager.queryCache.get(q.getId());
-							if (q1 != null) {
-								q = q1;
-								results = q.getResults();
-							} else {				
+							// If contents are a query
+							String queryText = msgArray[1];
+							System.out.println("[DisPA Server] - Query: " + queryText);	
+	
+							// Search query in the cache
+							Query q = contextManager.queryCache.get(queryText.hashCode());
+							if (q == null) {
+								// If q does not fall into the cache, creates new Query
+								q = new Query(queryText);
+	
+								// Stores the query in the cache
+								contextManager.queryCache.put(q.getId(), q);
+	
+								// Compute the id for this query
 								int id = contextManager.getContextId(q);
-								c = contextManager.contextCache.get(id);
+	
+								// Search context in the cache
+								Context c = contextManager.contextCache.get(id);
 								if (c == null) {
+									// If c is not in the cache, generates new Context
 									c = contextManager.generateContext(id);
+	
+									// Stores context in the cache
 									contextManager.contextCache.put(id, c);
 								}
-								contextManager.queryCache.put(q.getId(), q);
-								results = resultsFecther.fetch(c, q);
+	
+								// Fetch results with given context and query
+								String[] results = resultsFecther.fetch(c, q);
+	
+								// Store results for that query
 								q.setResults(results);
-							}							
-
+							}
+	
 							// Add query
 							taxonomy.addQuery(q.getCategory());
-							
+	
 							// Send results back
-							for (Element e : results) {
-								pluginConnection.send(RES + "|" + e.outerHtml());
+							for (String r : q.getResults()) {
+								pluginConnection.send(RES + "|" + r);
 							}							
 							break;
-
+	
 							// If contents are a web resource
 						case VST:
-							System.out.println("[DisPA Server] - Visit: " + contents);
-							System.out.println(webClassifier.classify(contents));							
+							String webURL = msgArray[1];
+							System.out.println("[DisPA Server] - Visit: " + webURL);
+							System.out.println(webClassifier.classify(webURL));							
 							break;
 						case ERR:
 							System.out.println("[DisPA Server] - An error ocurred in the plugin.");
@@ -210,12 +216,11 @@ public class DisPAServer {
 							taxonomy.save(taxonomyFileName);
 							contextManager.save(contextsFileName);							
 							break;
-
+	
 						default:
 							System.err.println("The opcode is not valid, a message of error must be sent.");
-						}						
-					}		
-				}
+					}						
+				}		
 			} catch(Exception e) {
 				pluginConnection.send(Integer.toString(ERR));
 				System.err.println("[DisPA Server] - An error ocurred: " + e.getMessage());

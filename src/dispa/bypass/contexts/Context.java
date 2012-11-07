@@ -1,10 +1,13 @@
 package dispa.bypass.contexts;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import org.apache.http.protocol.HttpContext;
 
-public class Context implements Serializable {
+public class Context implements Externalizable {
 
 	/**
 	 * 
@@ -46,5 +49,18 @@ public class Context implements Serializable {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public void readExternal(ObjectInput in) throws IOException,
+			ClassNotFoundException {
+		id = in.readInt();
+		connectionContext.setAttribute("cookie-store", in.readObject());
+	}
+
+	@Override
+	public void writeExternal(ObjectOutput out) throws IOException {
+		out.writeInt(id);
+		out.writeObject(connectionContext.getAttribute("cookie-store"));		
 	}
 }

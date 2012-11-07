@@ -101,8 +101,8 @@ public class ContextManager {
 			FileInputStream fileIn =
 					new FileInputStream(contextsFileName);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
-			this.contextCache = (LRUCache<Integer, Context>) in.readObject();
-			this.queryCache = (LRUCache<Integer, Query>) in.readObject();
+			contextCache = (LRUCache<Integer, Context>) in.readObject();
+			queryCache = (LRUCache<Integer, Query>) in.readObject();
 			in.close();
 			fileIn.close();
 		} catch(IOException e) {
