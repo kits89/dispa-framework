@@ -4,7 +4,6 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="com.soyatec.uml.CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/boilerpipe/boilerpipe-1.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/boilerpipe/nekohtml-1.9.13.jar"/>
 	<classpathentry kind="lib" path="lib/boilerpipe/xerces-2.9.1.jar"/>
@@ -22,5 +21,9 @@
 	<classpathentry kind="lib" path="lib/standford/stanford-corenlp.jar"/>
 	<classpathentry kind="lib" path="lib/standford/stanford-ner.jar"/>
 	<classpathentry kind="lib" path="lib/jsoup/jsoup-1.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/standford/xom.jar"/>
+	<classpathentry kind="lib" path="lib/standford/joda-time.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="lib/standford/stanford-corenlp-2012-05-22-models.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

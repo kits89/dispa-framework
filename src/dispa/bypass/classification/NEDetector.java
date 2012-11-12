@@ -62,23 +62,25 @@ public class NEDetector implements Callable<String>, Serializable {
 	    names = new ArrayList<String>();
 	    
 	    // Reads a file that contains important identifiers of this user
-		try {
-			FileInputStream fstream = new FileInputStream(localIdsFileName);
-			DataInputStream in = new DataInputStream(fstream);
-		    BufferedReader br = new BufferedReader(new InputStreamReader(in));	    
-		    String strLine;	    
-		    while ((strLine = br.readLine()) != null) names.add(strLine);
-		    in.close();
-		} catch (FileNotFoundException e) {
-			File localIdsFile = new File(localIdsFileName);
+	    if ((new File(localIdsFileName)).exists()) {
 			try {
-				localIdsFile.createNewFile();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	    	   
+				FileInputStream fstream = new FileInputStream(localIdsFileName);
+				DataInputStream in = new DataInputStream(fstream);
+			    BufferedReader br = new BufferedReader(new InputStreamReader(in));	    
+			    String strLine;	    
+			    while ((strLine = br.readLine()) != null) names.add(strLine);
+			    in.close();
+			} catch (FileNotFoundException e) {
+				File localIdsFile = new File(localIdsFileName);
+				try {
+					localIdsFile.createNewFile();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	    	   
+	    }
 	}
 	
 	public String detectIdentifiers(String text) {

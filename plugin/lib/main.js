@@ -52,7 +52,7 @@ exports.main = function() {
 							var sepIndex = rcv.indexOf('|'),
 							  opcode = parseInt(rcv.slice(0, sepIndex)), 
 							  contents = rcv.slice(sepIndex+1, rcv.length);
-							console.log("msg: " + opcode);						
+							console.log("\n\n\n" + rcv + "\n\n");						
 							switch (opcode) {
 								case RES:
 	  							  worker.port.emit('loadResponse', contents);

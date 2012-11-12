@@ -36,15 +36,33 @@ public class Classifier implements Callable<String> {
 		taxonomy = newTaxonomy;
 	}
 
+	final private static int MIN_FREQ = 1000; 
+	
 	public String classify(String resource) {
 		String maxCategoryPath = "Others";
 		double maxValue = 0.0;
+		int freq = 0;
 		
 		// Get hits of the search
 		List<FacetResult> result = searcher.facetedSearch(resource, taxonomy.getInterests());
 		
 		// Compute weights
-		HashMap<String, Double> weights = this.computeWeights(result);
+		HashMap<String, Double> weights = new HashMap<String, Double>();
+		for (FacetResult facetResult : result) {
+			FacetResultNode resultNode = facetResult.getFacetResultNode();
+			if (resultNode.getNumSubResults() > 0) {
+				for (FacetResultNode node : resultNode.getSubResults()) {
+					String categoryPath = node.getLabel().toString();
+					double count = (double) node.getValue();					
+					long visits = taxonomy.getAssignedVisits(categoryPath);
+					int cardinal = searcher.getCardinal(categoryPath);
+					double weight = (count * (1+visits)) / (1+cardinal);
+					weights.put(categoryPath, weight);
+					freq += count;
+				}
+			}
+		}
+		System.out.println("[DisPA Server] - Weights: " + weights.toString());
 		
 		// Find category with maximum weight
 		for (Map.Entry<String, Double> entry : weights.entrySet()) {
@@ -58,25 +76,25 @@ public class Classifier implements Callable<String> {
 		return maxCategoryPath;
 	}
 	
-	private HashMap<String, Double> computeWeights(List<FacetResult> hits) {
-		HashMap<String, Double> weights = new HashMap<String, Double>();
-		// Compute weights
-		for (FacetResult facetResult : hits) {
-			FacetResultNode resultNode = facetResult.getFacetResultNode();
-			if (resultNode.getNumSubResults() > 0) {
-				for (FacetResultNode node : resultNode.getSubResults()) {
-					String categoryPath = node.getLabel().toString();
-					int count = (int) node.getValue();
-					long visits = taxonomy.getAssignedVisits(categoryPath);
-					int cardinal = searcher.getCardinal(categoryPath);
-					double weight = (count * (1+visits)) / (1+cardinal);
-					weights.put(categoryPath, weight);
-				}
-			}
-		}
-		System.out.println("[DisPA Server] - Weights: " + weights.toString());
-		return weights;
-	}
+//	private HashMap<String, Double> computeWeights(List<FacetResult> hits) {
+//		HashMap<String, Double> weights = new HashMap<String, Double>();
+//		// Compute weights
+//		for (FacetResult facetResult : hits) {
+//			FacetResultNode resultNode = facetResult.getFacetResultNode();
+//			if (resultNode.getNumSubResults() > 0) {
+//				for (FacetResultNode node : resultNode.getSubResults()) {
+//					String categoryPath = node.getLabel().toString();
+//					double count = (double) node.getValue();
+//					long visits = taxonomy.getAssignedVisits(categoryPath);
+//					int cardinal = searcher.getCardinal(categoryPath);
+//					double weight = (count * (1+visits)) / (1+cardinal);
+//					weights.put(categoryPath, weight);
+//				}
+//			}
+//		}
+//		System.out.println("[DisPA Server] - Weights: " + weights.toString());
+//		return weights;
+//	}
 
 	/**
 	 * @param query

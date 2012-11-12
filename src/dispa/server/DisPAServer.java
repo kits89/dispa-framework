@@ -93,7 +93,7 @@ public class DisPAServer {
 			// Create help formatter 
 			HelpFormatter formatter = new HelpFormatter();
 
-			// Get path of index
+			// Print help
 			if(cmd.hasOption("h")) {
 				formatter.printHelp("dispa [options]", options );
 				System.exit(0);

@@ -12,6 +12,9 @@ import java.io.InputStreamReader;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
@@ -32,31 +35,73 @@ public class FileProcessor {
 	private static String PROF_DIR = null;
 	private static String SEPARATOR = "/t";
 	private static int NUM_FIELD = 0;
-
+	
+	private final static String taxonomyFileName = "taxonomy.ser";
+	
 	/**
 	 * @param args
 	 */
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		try {
 			// Create Options object
 			Options options = new Options();
 
-			// Add port option
-			options.addOption("w", false, "WordNet classification.");
-			options.addOption("f", true, "name of the file of queries.");						
-			options.addOption("d", true, "path of the index directory.");
-			options.addOption("p", true, "path of the profile directory.");
-			options.addOption("F", true, "field separator.");
-			options.addOption("N", true, "number of the query field.");
-			options.addOption("t", true, "taxonomy file name.");
-			options.addOption("n", true, "Enable Named Entity recognition.");
-			options.addOption("h", true, "print this message.");
+			// Create options;
+			Option portOption = OptionBuilder.withArgName("profile path")
+					.hasArg()
+					.withDescription("path of the profile directory.")
+					.create("p");
+			Option dirOption = OptionBuilder.withArgName("index path")
+					.hasArg()
+					.withDescription("path of the index directory.")
+					.create("d");
+			Option nerOption = OptionBuilder
+					.withDescription("Enable Named Entity recognition.")
+					.create("n");
+			Option wordnetOption = OptionBuilder
+					.withDescription("enable WordNet classification.")
+					.create("w");
+			Option helpOption = OptionBuilder
+					.withDescription("print this message.")
+					.create("h");
+			Option fileOption = OptionBuilder.withArgName("filename")
+					.hasArg()
+					.withDescription("name of the file of queries.")
+					.create("f");
+			Option tokenOption = OptionBuilder.withArgName("token")
+					.hasArg()
+					.withDescription("field separator token.")
+					.create("F");
+			Option positionOption = OptionBuilder.withArgName("position")
+					.hasArg()
+					.withDescription("number of the query field position.")
+					.create("N");
+			
+			// Add options
+			options.addOption(helpOption);
+			options.addOption(portOption);
+			options.addOption(nerOption);
+			options.addOption(dirOption);
+			options.addOption(wordnetOption);
+			options.addOption(fileOption);
+			options.addOption(tokenOption);
+			options.addOption(positionOption);
 			
 			// Parse the command line arguments
 			CommandLineParser parser = new PosixParser();
 			CommandLine cmd = parser.parse(options, args);
+			
+			// Create help formatter 
+			HelpFormatter formatter = new HelpFormatter();
 
-			// Get port
+			// Print help
+			if(cmd.hasOption("h")) {
+				formatter.printHelp("dispa-fproc [options]", options );
+				System.exit(0);
+			}
+			
+			// Get file
 			if(cmd.hasOption("f")) {
 				FILE_NAME = cmd.getOptionValue("f");
 			}
@@ -75,18 +120,23 @@ public class FileProcessor {
 			// Get path of profile
 			if(cmd.hasOption("p")) {
 				PROF_DIR = cmd.getOptionValue("p");
-				// Clean profile directory
-				File profileFile = new File(PROF_DIR);				
-				if (profileFile != null) {
-					if (profileFile.exists()) {
-						for (File child : profileFile.listFiles()) child.delete();
-						profileFile.delete();
-					}
-					profileFile.mkdir();
-				}
 			}
 			else {
-				throw new ParseException("The parameter \'p\' is necessary.");
+				PROF_DIR = "PROF" + FILE_NAME;
+			}
+			if (cmd.hasOption("n")) {
+				PROF_DIR = "NER_" + "PROF" + FILE_NAME;
+			}
+			
+			
+			// Clean profile directory
+			File profileFile = new File(PROF_DIR);				
+			if (profileFile != null) {
+				if (profileFile.exists() && profileFile.isDirectory()) {
+					for (File child : profileFile.listFiles()) child.delete();
+					profileFile.delete();
+				}
+				profileFile.mkdir();
 			}
 
 			// Get separator
@@ -107,13 +157,13 @@ public class FileProcessor {
 				searcher = new SimpleSearcher(INDEX_DIR);
 			}
 	
+			// Initialize taxonomy
 			Taxonomy taxonomy = new Taxonomy("Top");
-			// If taxonomy is indicated
-			if (cmd.hasOption("t")) {
-				taxonomy.load(cmd.getOptionValue("t"));
+			if ((new File(taxonomyFileName)).exists()) {
+				taxonomy.load(taxonomyFileName);
 			} else {
 				taxonomy.loadFromIndex(INDEX_DIR);
-			}	
+			}
 			
 			Classifier classifier = new Classifier(searcher, taxonomy);
 			
@@ -133,18 +183,26 @@ public class FileProcessor {
 
 			String strLine = null;
 			while ((strLine=br.readLine()) != null) {
-				// Parse the line and get the query
-				String[] fields = strLine.split(SEPARATOR);
-				String query = fields[NUM_FIELD];
-
-				System.out.println("\nQuery: " + query);
-
-				// Get virtual identity
-				int id = contextManager.getContextId(new Query(query));
-				
-				// Write query to a directory associated to the VirtualIdentity
-				write(String.valueOf(id), query);
+				if (!(strLine.isEmpty() || strLine.equalsIgnoreCase("-"))) {
+					// Parse the line and get the query
+					String[] fields = strLine.split(SEPARATOR);
+					String query = fields[NUM_FIELD];
+	
+					System.out.println("\nQuery: " + query);
+	
+					// Get virtual identity
+					int id = contextManager.getContextId(new Query(query));
+					
+					// Write query to a directory associated to the VirtualIdentity
+					write(String.valueOf(id), query);
+				}
 			}
+			
+			// Show profiles generated and number of queries		
+			System.out.println("Server-logs generated:");
+			for (File child : profileFile.listFiles()){
+				System.out.println(child.getName());
+			}			
 		} catch (ParseException e) {
 			// oops, something went wrong
 			System.err.println("Parsing failed. " + e.getMessage() );
