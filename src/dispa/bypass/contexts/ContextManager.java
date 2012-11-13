@@ -26,6 +26,8 @@ public class ContextManager {
 
 	VirtualIdentityGenerator vig = new VirtualIdentityGenerator();
 
+	final private int MIN_FREQ = 1000; 
+	
 	/**
 	 * @uml.property  name="classifier"
 	 * @uml.associationEnd  multiplicity="(1 1)"
@@ -45,7 +47,7 @@ public class ContextManager {
 		}
 	}
 
-
+	
 	public Context generateContext(int id) {
 		HttpContext connContext = vig.generateVirtualIdentity(
 				new BasicHttpContext());
@@ -87,12 +89,20 @@ public class ContextManager {
 			e.printStackTrace();
 		}		
 
-		int id = (identifiers + categoryPath).hashCode();		
+		String strId = identifiers + categoryPath;
+		System.out.println("[DisPA Server] - Frequency: " + classifier.getFrequency());
+		if (classifier.getFrequency() < this.MIN_FREQ) {
+			if (identifiers == null) {
+				strId += query.getText().toLowerCase();
+			} else if (identifiers.isEmpty()) {
+				strId += query.getText().toLowerCase();
+			}
+		}
 
 		// Shutdown thread pool
 		service.shutdown();
 
-		return id;		
+		return strId.hashCode();		
 	}
 
 	@SuppressWarnings("unchecked")

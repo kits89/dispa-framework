@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,11 +21,12 @@ public class WebQueryGenerator extends QueryGenerator {
 	@Override
 	protected String generateQuery(String resourceAddress) {
 		String title = null, description = null, keywords = null;
-
+		String regexURL = "(https?|ftp|file)://(www\\.)?(([^\\.]*)+)\\.([^\\.])*/(.)*";
+		Pattern pattern = Pattern.compile(regexURL);
+		Matcher matcher = pattern.matcher(resourceAddress);
 		try {
-			URL url = new URL(resourceAddress);
+			URL url = new URL(resourceAddress);			
 			String contents = this.getWebContents(url);
-
 			if (contents != null) {
 				Document doc = null;
 				try {
@@ -66,6 +69,10 @@ public class WebQueryGenerator extends QueryGenerator {
 		} catch (MalformedURLException e1) {
 			e1.printStackTrace();
 		}
+
+		if (matcher.matches())	{
+			return matcher.group(3).replace(".", " ");
+		}
 		return resourceAddress;
 	}
 
@@ -84,9 +91,7 @@ public class WebQueryGenerator extends QueryGenerator {
 				baos.write(buf, 0, len);
 			}
 			contents = new String(baos.toByteArray(), encoding);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		} catch (IOException e) {}		
 		return contents;
 	}
 }

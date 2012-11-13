@@ -33,11 +33,13 @@ public class DisPAServer {
 
 	/** Constant for query messages */
 	private final static int QRY = 0;
+	
 	/** Constant for web messages */
 	private final static int VST = 1;
 	private final static int ERR = 2;
 	private final static int OFF = 3;
 	private final static int RES = 4;
+	
 	private final static String taxonomyFileName = "taxonomy.ser";
 	private final static String contextsFileName = "contexts.ser";
 
@@ -189,7 +191,7 @@ public class DisPAServer {
 	
 								// Fetch results with given context and query
 								String[] results = resultsFecther.fetch(c, q);
-	
+								
 								// Store results for that query
 								q.setResults(results);
 							}
@@ -207,7 +209,8 @@ public class DisPAServer {
 						case VST:
 							String webURL = msgArray[1];
 							System.out.println("[DisPA Server] - Visit: " + webURL);
-							System.out.println(webClassifier.classify(webURL));							
+							String category = webClassifier.classify(webURL);
+							System.out.println("[DisPA Server] - Category: " + category);							
 							break;
 						case ERR:
 							System.out.println("[DisPA Server] - An error ocurred in the plugin.");

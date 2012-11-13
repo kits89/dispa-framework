@@ -36,12 +36,22 @@ public class Classifier implements Callable<String> {
 		taxonomy = newTaxonomy;
 	}
 
-	final private static int MIN_FREQ = 1000; 
 	
+	private int frequency = 0;
+
+	
+	public int getFrequency() {
+		return frequency;
+	}
+
+	public void setFrequency(int frequency) {
+		this.frequency = frequency;
+	}
+
 	public String classify(String resource) {
 		String maxCategoryPath = "Others";
 		double maxValue = 0.0;
-		int freq = 0;
+
 		
 		// Get hits of the search
 		List<FacetResult> result = searcher.facetedSearch(resource, taxonomy.getInterests());
@@ -58,7 +68,7 @@ public class Classifier implements Callable<String> {
 					int cardinal = searcher.getCardinal(categoryPath);
 					double weight = (count * (1+visits)) / (1+cardinal);
 					weights.put(categoryPath, weight);
-					freq += count;
+					this.frequency += count;
 				}
 			}
 		}
