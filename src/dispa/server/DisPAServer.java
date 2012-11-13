@@ -12,6 +12,7 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
+import org.apache.jcs.access.exception.CacheException;
 
 import dispa.bypass.classification.Classifier;
 import dispa.bypass.classification.search.Searcher;
@@ -33,15 +34,14 @@ public class DisPAServer {
 
 	/** Constant for query messages */
 	private final static int QRY = 0;
-	
+
 	/** Constant for web messages */
 	private final static int VST = 1;
 	private final static int ERR = 2;
 	private final static int OFF = 3;
 	private final static int RES = 4;
-	
+
 	private final static String taxonomyFileName = "taxonomy.ser";
-	private final static String contextsFileName = "contexts.ser";
 
 	/**
 	 * Class to handle the connection with the plug-in
@@ -138,9 +138,6 @@ public class DisPAServer {
 			// Initialize context manager
 			ContextManager contextManager = new ContextManager(
 					new Classifier(searcher, taxonomy), cmd.hasOption("n"));
-			if ((new File(contextsFileName)).exists()) {
-				contextManager.load(contextsFileName);
-			}	
 
 			// Set up the plugin connection
 			pluginConnection = new PluginConnection(PORT);
@@ -162,66 +159,76 @@ public class DisPAServer {
 					int opCode = Integer.parseInt(msgArray[0]);							
 
 					switch(opCode) {							
-						case QRY:
-							// If contents are a query
-							String queryText = msgArray[1];
-							System.out.println("[DisPA Server] - Query: " + queryText);	
-	
-							// Search query in the cache
-							Query q = contextManager.queryCache.get(queryText.hashCode());
-							if (q == null) {
-								// If q does not fall into the cache, creates new Query
-								q = new Query(queryText);
-	
-								// Stores the query in the cache
-								contextManager.queryCache.put(q.getId(), q);
-	
-								// Compute the id for this query
-								int id = contextManager.getContextId(q);
-	
-								// Search context in the cache
-								Context c = contextManager.contextCache.get(id);
-								if (c == null) {
-									// If c is not in the cache, generates new Context
-									c = contextManager.generateContext(id);
-	
-									// Stores context in the cache
-									contextManager.contextCache.put(id, c);
-								}
-	
-								// Fetch results with given context and query
-								String[] results = resultsFecther.fetch(c, q);
-								
-								// Store results for that query
-								q.setResults(results);
+					case QRY:
+						// If contents are a query
+						String queryText = msgArray[1];
+						System.out.println("[DisPA Server] - Query: " + queryText);	
+
+						// Search query in the cache
+						int qId = queryText.hashCode();
+						Query q = (Query) contextManager.queryCache.get(qId);
+						if (q == null) {
+							// If q does not fall into the cache, creates new Query
+							q = new Query(queryText);
+
+							// Store in cache							
+							try {					    	   
+								contextManager.queryCache.put(qId , q);
+							} catch (CacheException e) {
+								System.err.println("Problem putting query="
+										+ q.getText() + " in the cache, for key " + qId + ": " + e.getCause());
 							}
-	
-							// Add query
-							taxonomy.addQuery(q.getCategory());
-	
-							// Send results back
-							for (String r : q.getResults()) {
-								pluginConnection.send(RES + "|" + r);
-							}							
-							break;
-	
-							// If contents are a web resource
-						case VST:
-							String webURL = msgArray[1];
-							System.out.println("[DisPA Server] - Visit: " + webURL);
-							String category = webClassifier.classify(webURL);
-							System.out.println("[DisPA Server] - Category: " + category);							
-							break;
-						case ERR:
-							System.out.println("[DisPA Server] - An error ocurred in the plugin.");
-						case OFF:
-							System.out.println("[DisPA Server] - Taxonomy has been updated.");
-							taxonomy.save(taxonomyFileName);
-							contextManager.save(contextsFileName);							
-							break;
-	
-						default:
-							System.err.println("The opcode is not valid, a message of error must be sent.");
+
+							// Compute the id for this query
+							int id = contextManager.getContextId(q);
+
+							// Search context in the cache
+							Context c = (Context) contextManager.contextCache.get(id);
+							if (c == null) {
+								// If c is not in the cache, generates new Context
+								c = contextManager.generateContext(id);
+
+								// Stores context in cache							
+								try {					    	   
+									contextManager.contextCache.put(id , c);
+								} catch (CacheException e) {
+									System.err.println("Problem putting in the cache " +
+											"context with id=" + qId + ": " + e.getCause());
+								}
+							}
+
+							// Fetch results with given context and query
+							String[] results = resultsFecther.fetch(c, q);
+
+							// Store results for that query
+							q.setResults(results);
+						}
+
+						// Add query
+						taxonomy.addQuery(q.getCategory());
+
+						// Send results back
+						for (String r : q.getResults()) {
+							pluginConnection.send(RES + "|" + r);
+						}							
+						break;
+
+						// If contents are a web resource
+					case VST:
+						String webURL = msgArray[1];
+						System.out.println("[DisPA Server] - Visit: " + webURL);
+						String category = webClassifier.classify(webURL);
+						System.out.println("[DisPA Server] - Category: " + category);							
+						break;
+					case ERR:
+						System.out.println("[DisPA Server] - An error ocurred in the plugin.");
+					case OFF:
+						System.out.println("[DisPA Server] - Taxonomy has been updated.");
+						taxonomy.save(taxonomyFileName);					
+						break;
+
+					default:
+						System.err.println("The opcode is not valid, a message of error must be sent.");
 					}						
 				}		
 			} catch(Exception e) {
@@ -229,7 +236,6 @@ public class DisPAServer {
 				System.err.println("[DisPA Server] - An error ocurred: " + e.getMessage());
 				e.printStackTrace();
 				taxonomy.save(taxonomyFileName);
-				contextManager.save(contextsFileName);
 				pluginConnection.close();
 			}
 		} catch (ParseException e) {

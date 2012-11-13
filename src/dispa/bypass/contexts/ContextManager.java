@@ -1,11 +1,5 @@
 package dispa.bypass.contexts;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -13,17 +7,17 @@ import java.util.concurrent.Future;
 
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
+import org.apache.jcs.JCS;
+import org.apache.jcs.access.exception.CacheException;
 
-import dispa.bypass.LRUCache;
 import dispa.bypass.classification.Classifier;
 import dispa.bypass.classification.NEDetector;
 import dispa.bypass.queries.Query;
 import dispa.bypass.virtualidentities.VirtualIdentityGenerator;
 
-public class ContextManager {
-	public LRUCache<Integer, Query> queryCache = new LRUCache<Integer, Query>(15);
-	public LRUCache<Integer, Context> contextCache = new LRUCache<Integer, Context>(40);
-
+public class ContextManager {	
+	public  JCS queryCache = null, contextCache = null;
+	
 	VirtualIdentityGenerator vig = new VirtualIdentityGenerator();
 
 	final private int MIN_FREQ = 1000; 
@@ -45,6 +39,26 @@ public class ContextManager {
 		if (ner) {
 			neDetector = new dispa.bypass.classification.NEDetector();
 		}
+		// Set cache
+		try {
+            queryCache = JCS.getInstance("queries");
+            contextCache = JCS.getInstance("contexts");
+        } catch (CacheException e) {
+            System.err.println("Problem initializing caches: " + e.getCause());
+        }
+		int key = 1;
+        Query q = new Query("hola i adeu");
+        try {
+            // if it isn't null, insert it
+            if (q != null) {
+                queryCache.put(key, q);
+            }
+        } catch (CacheException e) {
+        	System.err.println("Problem putting query="
+               + q.getText() + " in the cache, for key " + key + ": " + e.getCause());
+        }
+        Query q2 = (Query) queryCache.get(key);
+        Query q3 = (Query) queryCache.get(2);
 	}
 
 	
@@ -103,39 +117,5 @@ public class ContextManager {
 		service.shutdown();
 
 		return strId.hashCode();		
-	}
-
-	@SuppressWarnings("unchecked")
-	public void load(String contextsFileName) {
-		try {
-			FileInputStream fileIn =
-					new FileInputStream(contextsFileName);
-			ObjectInputStream in = new ObjectInputStream(fileIn);
-			contextCache = (LRUCache<Integer, Context>) in.readObject();
-			queryCache = (LRUCache<Integer, Query>) in.readObject();
-			in.close();
-			fileIn.close();
-		} catch(IOException e) {
-			e.printStackTrace();
-		} catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void save(String contextsFileName) {
-		try {
-			FileOutputStream fileOut = new FileOutputStream(contextsFileName);
-			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			out.writeObject(contextCache);
-			out.writeObject(queryCache);
-			out.close();
-			fileOut.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }

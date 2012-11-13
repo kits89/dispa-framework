@@ -1,5 +1,6 @@
 package dispa.bypass;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -18,6 +19,11 @@ import java.util.Map;
  */
 public class LRUCache<K, V> extends LinkedHashMap<K, V>
 		implements Serializable {
+	/** 
+	 * File where the elements of the cache are stored
+	 */
+	private File cacheFile = null;
+	
 	/**
 	 * UID of the class for serialization.
 	 */
@@ -33,9 +39,28 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V>
 	 * @param newMaxEntries
 	 * 		the maximum number of entries in the cache.
 	 */
-	public LRUCache(final int newMaxEntries) {
+	public LRUCache(final int newMaxEntries, String fileName) {
 		super(newMaxEntries + 1, 1.0f, true);
 		this.maxEntries = newMaxEntries;
+		this.cacheFile = new File(fileName);
+	}
+
+	
+	@Override
+	public V get(Object key) {
+		V VObject = super.get(key);
+		if (VObject == null) {
+			// TODO: Fetch from disk
+			
+		}
+		return VObject;
+	}
+
+	@Override
+	public V put(K key, V value) {
+		// TODO: Write to disk
+		
+		return super.put(key, value);
 	}
 
 	/**
