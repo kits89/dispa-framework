@@ -13,6 +13,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import dispa.bypass.contexts.Context;
@@ -30,8 +31,8 @@ public class ResultsFetcher {
 		this.numResults = Integer.toString(numResults);
 		this.language = language;
 	}
-	public String[] fetch(Context localContext, Query query) {
-		String[] results = null;
+	public String fetch(Context localContext, Query query) {
+		String results = null;
 		URIBuilder builder = new URIBuilder();
 		builder.setScheme("http").setHost("www.google.com").setPath("/search")
 		    .setParameter("safe", "off")
@@ -53,13 +54,10 @@ public class ResultsFetcher {
 			
 			Document doc = Jsoup.parse(resultsHTML);
 			
-			Elements elements = doc.select("li.g");
+			Elements element = doc.select("div#ires");
 			
-			results = new String[elements.size()];
-			for (int i = 0; i < elements.size(); ++i) {
-				results[i] = elements.get(i).outerHtml();
-			}
-			
+			results = element.get(0).html();
+						
 			EntityUtils.consume(entity);
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block

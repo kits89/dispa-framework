@@ -1,59 +1,52 @@
 const {components} = require("chrome");
 const {NetUtil} = components.utils.import("resource://gre/modules/NetUtil.jsm");
 
-exports.connect = function(server, port, data, callback) {
-    var transportService =  components.classes["@mozilla.org/network/socket-transport-service;1"]
-    		.getService(components.interfaces.nsISocketTransportService);  
+const SERVER = 'localhost';
+const PORT = 6666;
 
-    var transport = transportService
-    		.createTransport(null, 0, server, port, null);  
+exports.send = function(message, callback) {
+    try {
+        var dataListener = {
+            data: [],
+            onStartRequest: function(request, context) {
+            	console.log("[DisPA] - Connected to DisPAServer");
+            },
+            onStopRequest: function(request, context, status) {
+                inputstream.close();
+                outputstream.close();
+                callback(this.data);
+            },
+            onDataAvailable: function(request, context, inputStream, offset, count) {
+                logMessage("Data avaiable ["+count+"] long");
+                try {
+	                var reply = scriptible.read(count);
+	                console.log("Reading ["+count+"]["+offset+"]["+reply+"]");
+	                this.data.push(reply);
+                } catch(ex) {
+                    console.log("Error on Data Avaialbel ["+ex+"]");
+                }
+            }
+        };
 
-    var stream = transport
-			.openInputStream(components.interfaces.nsITransport.OPEN_UNBUFFERED,null,null);
-    
-    var instream = components.classes["@mozilla.org/scriptableinputstream;1"]
-    		.createInstance(components.interfaces.nsIScriptableInputStream); 
+        var socketTransportService = components.classes["@mozilla.org/network/socket-transport-service;1"]
+			.getService(components.interfaces.nsISocketTransportService)
+        var socketTransport = socketTransportService
+        	.createTransport(["udp"], 1, SERVER, PORT, null);
+        var inputStream = socketTransport.openInputStream(0, 0, 0);
+        var scriptible = components.classes["@mozilla.org/scriptableinputstream;1"]
+			.createInstance(components.interfaces.nsIScriptableInputStream);
+			
+        scriptible.init(inputStream);
 
-    // Initialize
-    instream.init(stream);
-    
-    var outstream = transport.openOutputStream(0, 0, 0);
-    
-    var dataListener = {
-    	receivedData: [],
-    	
-        onStartRequest: function(request, context) {
-        	console.log("[GooPIR] - Connected to GoopirServer");
-        },
+        var pump = components.classes["@mozilla.org/network/input-stream-pump;1"]
+	        .createInstance(components.interfaces.nsIInputStreamPump);
+        pump.init(inputStream, -1, -1, 0, 0, false);
+        pump.asyncRead(dataListener, null);
 
-        onStopRequest: function(request, context, status) {        	     	
-            instream.close();
-            outstream.close();
-        }, 
-
-        onDataAvailable: function(request, context, inputStream, offset, count) {
-        	var data = instream.read(count).replace(/\n/gm,'');        	
-	        callback(data);   
-        }
-    };
-
-    var pump = components.classes["@mozilla.org/network/input-stream-pump;1"]
-            .createInstance(components.interfaces.nsIInputStreamPump);
-    
-    pump.init(stream, -1, -1, 0, 0, false); 
-    pump.asyncRead(dataListener, null); 
-	
-	// Find category
-	var inputStr = components.classes["@mozilla.org/io/string-input-stream;1"]
-			.createInstance(components.interfaces.nsIStringInputStream);
-
-	var outData = data + '\n';
-	
-	inputStr.setData(outData, outData.length);
-
-	NetUtil.asyncCopy(inputStr, outstream, function(aResult) {  
-		if (!components.isSuccessCode(aResult)) {
-			console.log("[GooPIR] - ERROR: writing to socket");
-		}
-	});    											
+        var outputStream = socketTransport.openOutputStream(0,0,0);
+        outputStream.write(message, message.length);
+        console.log("Sent ["+message+"]");
+    } catch(ex) {
+        console.log(ex);
+    }
 }

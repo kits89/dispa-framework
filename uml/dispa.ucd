@@ -118,7 +118,7 @@
   </children>
   <children xsi:type="editmodel:PackageEditModel" name="dispa.bypass" location="28,504" size="1595,1249" id="dispa.bypass">
     <children xsi:type="editmodel:PackageEditModel" name="dispa.bypass.classification" location="681,110" size="872,642" id="dispa.bypass.classification">
-      <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@children.0/@children.2/@children.0/@sourceConnections.0 //@children.2/@children.2/@children.1/@sourceConnections.0" name="Classifier" location="488,72" size="127,176" id="dispa.bypass.classification/Classifier" runTimeClassModel="classify(Ljava.lang.String;),Classifier(Ldispa.bypass.classification.search.Searcher;Ldispa.taxonomy.Taxonomy;),call(),setFrequency(I),query,frequency,getFrequency()">
+      <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@children.0/@children.2/@children.0/@sourceConnections.0 //@children.2/@children.2/@children.1/@sourceConnections.0" name="Classifier" location="488,72" size="127,176" id="dispa.bypass.classification/Classifier" runTimeClassModel="classify(Ljava.lang.String;),call(),Classifier(Ldispa.bypass.classification.search.Searcher;Ldispa.taxonomy.Taxonomy;),setFrequency(I),query,frequency,getFrequency()">
         <children xsi:type="editmodel:CompartmentEditModel" size="94,36">
           <children xsi:type="editmodel:AttributeEditModel" name="frequency" id="dispa.bypass.classification/Classifier#frequency"/>
           <children xsi:type="editmodel:AttributeEditModel" name="query" id="dispa.bypass.classification/Classifier#query"/>
@@ -141,7 +141,7 @@
         </sourceConnections>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
       </children>
-      <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@children.2/@children.1/@sourceConnections.1" name="NEDetector" location="71,25" size="173,140" id="dispa.bypass.classification/NEDetector" runTimeClassModel="call(),NEDetector(),query,localIdsFileName,detectIdentifiers(Ljava.lang.String;)">
+      <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@children.2/@children.1/@sourceConnections.1" name="NEDetector" location="71,25" size="173,140" id="dispa.bypass.classification/NEDetector" runTimeClassModel="call(),query,NEDetector(),localIdsFileName,detectIdentifiers(Ljava.lang.String;)">
         <children xsi:type="editmodel:CompartmentEditModel" size="150,36">
           <children xsi:type="editmodel:AttributeEditModel" name="localIdsFileName" id="dispa.bypass.classification/NEDetector#localIdsFileName"/>
           <children xsi:type="editmodel:AttributeEditModel" name="query" id="dispa.bypass.classification/NEDetector#query"/>
@@ -155,7 +155,7 @@
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
       </children>
       <children xsi:type="editmodel:PackageEditModel" name="dispa.bypass.classification.search" location="25,292" size="819,336" id="dispa.bypass.classification.search">
-        <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@children.0/@children.2/@children.5/@sourceConnections.0 //@children.2/@children.0/@children.2/@children.2/@sourceConnections.0" name="Searcher" location="483,45" size="231,140" id="dispa.bypass.classification.search/Searcher" runTimeClassModel="Searcher(Ljava.lang.String;),queryParser,getCardinal(Ljava.lang.String;),Searcher(Ljava.lang.String;Ldispa.bypass.classification.search.QueryGenerator;),facetedSearch(Ljava.lang.String;Ljava.util.ArrayList;)">
+        <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@children.0/@children.2/@children.5/@sourceConnections.0 //@children.2/@children.0/@children.2/@children.2/@sourceConnections.0" name="Searcher" location="483,45" size="231,140" id="dispa.bypass.classification.search/Searcher" runTimeClassModel="queryParser,Searcher(Ljava.lang.String;),getCardinal(Ljava.lang.String;),Searcher(Ljava.lang.String;Ldispa.bypass.classification.search.QueryGenerator;),facetedSearch(Ljava.lang.String;Ljava.util.ArrayList;)">
           <children xsi:type="editmodel:CompartmentEditModel" size="208,18">
             <children xsi:type="editmodel:AttributeEditModel" name="queryParser" id="dispa.bypass.classification.search/Searcher#queryParser"/>
           </children>
@@ -256,7 +256,7 @@
       <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
     </children>
     <children xsi:type="editmodel:PackageEditModel" name="dispa.bypass.contexts" location="40,292" size="566,310" id="dispa.bypass.contexts">
-      <children xsi:type="editmodel:ClassEditModel" name="Context" location="9,39" size="217,248" id="dispa.bypass.contexts/Context" runTimeClassModel="getConnextionContext(),id,Context(),Context(I),getId(),readExternal(Ljava.io.ObjectInput;),Context(ILorg.apache.http.protocol.HttpContext;),equals(Ljava.lang.Object;),writeExternal(Ljava.io.ObjectOutput;),connectionContext,setId(I)">
+      <children xsi:type="editmodel:ClassEditModel" name="Context" location="9,39" size="217,248" id="dispa.bypass.contexts/Context" runTimeClassModel="id,getConnextionContext(),Context(),Context(I),getId(),equals(Ljava.lang.Object;),Context(ILorg.apache.http.protocol.HttpContext;),readExternal(Ljava.io.ObjectInput;),writeExternal(Ljava.io.ObjectOutput;),connectionContext,setId(I)">
         <children xsi:type="editmodel:CompartmentEditModel" size="194,36">
           <children xsi:type="editmodel:AttributeEditModel" name="connectionContext" id="dispa.bypass.contexts/Context#connectionContext"/>
           <children xsi:type="editmodel:AttributeEditModel" name="id" id="dispa.bypass.contexts/Context#id"/>
@@ -275,7 +275,7 @@
         <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
       </children>
-      <children xsi:type="editmodel:ClassEditModel" name="ContextManager" location="265,42" size="281,194" id="dispa.bypass.contexts/ContextManager" runTimeClassModel="contextCache,ContextManager(Ldispa.bypass.classification.Classifier;Z),generateContext(I),load(Ljava.lang.String;),getContextId(Ldispa.bypass.queries.Query;),vig,queryCache,save(Ljava.lang.String;)">
+      <children xsi:type="editmodel:ClassEditModel" name="ContextManager" location="265,42" size="281,194" id="dispa.bypass.contexts/ContextManager" runTimeClassModel="contextCache,generateContext(I),ContextManager(Ldispa.bypass.classification.Classifier;Z),getContextId(Ldispa.bypass.queries.Query;),load(Ljava.lang.String;),vig,queryCache,save(Ljava.lang.String;)">
         <children xsi:type="editmodel:CompartmentEditModel" size="258,54">
           <children xsi:type="editmodel:AttributeEditModel" name="contextCache" id="dispa.bypass.contexts/ContextManager#contextCache"/>
           <children xsi:type="editmodel:AttributeEditModel" name="queryCache" id="dispa.bypass.contexts/ContextManager#queryCache"/>
@@ -325,7 +325,7 @@
           <children xsi:type="editmodel:MethodEditModel" name="getText" id="dispa.bypass.queries/Query#getText()"/>
           <children xsi:type="editmodel:MethodEditModel" name="setCategory" id="dispa.bypass.queries/Query#setCategory(Ljava.lang.String;)"/>
           <children xsi:type="editmodel:MethodEditModel" name="setId" id="dispa.bypass.queries/Query#setId(I)"/>
-          <children xsi:type="editmodel:MethodEditModel" name="setResults" id="dispa.bypass.queries/Query#setResults([Ljava.lang.String;)"/>
+          <children xsi:type="editmodel:MethodEditModel" name="setResults" id="dispa.bypass.queries/Query#setResults(Ljava.lang.String;)"/>
         </children>
         <children xsi:type="editmodel:CompartmentEditModel"/>
         <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>

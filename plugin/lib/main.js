@@ -21,13 +21,12 @@ const dirsvc = components.classes["@mozilla.org/file/directory_service;1"]
 const abs = dirsvc.get("ProfD", components.interfaces.nsIFile);
 abs.append('DisPA');
 
-const QRY = 0;
-const VST = 1;
-const ERR = 2;
-const OFF = 3;
-const RES = 4;
-const SERVER = 'localhost';
-const PORT = 6666;
+var QRY = 0;
+var VST = 1;
+var RES = 2;
+var ERR = 3;
+var OFF = 4;
+
 
 exports.main = function() {
 	var w = new widgets.Widget({
@@ -43,17 +42,28 @@ exports.main = function() {
 					 var worker = this.attach({
 						 contentScriptFile: [Data.url('js/jquery.js'),
 						 					 Data.url('js/handleQuery.js')],
-					 });					 
+					 });				 
 					 // When the event is triggered:
 					 worker.port.on('querySent', function(query) {						 						 	
 						// Make connection to classifier and send query
-						var msg = QRY + '|' + query;
-						Socket.connect(SERVER, PORT, msg, function(rcv) {
-							var sepIndex = rcv.indexOf('|'),
-							  opcode = parseInt(rcv.slice(0, sepIndex)), 
+
+						var buffer = [];
+						// Push opcode
+						buffer.push(QRY.toString(2));
+						
+						// Push message contents
+						 for(var i = 0, n = query.length; i < n; i++) {
+        					var char = query.charCodeAt(i);
+        					buffer.push(char >>> 8, char & 0xFF);
+    					}					
+																
+						Socket.send(buffer, function(rcv) {
+							var sepIndex = 1,
+							  opcode = rcv.slice(0, sepIndex), 
 							  contents = rcv.slice(sepIndex+1, rcv.length);
-							console.log("\n\n\n" + rcv + "\n\n");						
-							switch (opcode) {
+							console.log(opcode);
+													
+							switch (parseInt(opcode)) {
 								case RES:
 	  							  worker.port.emit('loadResponse', contents);
 								  break;
@@ -74,6 +84,6 @@ exports.main = function() {
 // Reason is one of the following strings describing the reason your 
 // add-on was unloaded: uninstall, disable, shutdown, upgrade, or downgrade.
 exports.onUnload = function (reason) {
-  Socket.connect(SERVER, PORT, OFF);	
+  Socket.send(OFF)	;	
   console.log('[DisPA] was unloaded: ' + reason);
 };

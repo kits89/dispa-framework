@@ -21,6 +21,6 @@ $(document).on("keypress", function(event) {
 // When the response arrives is loaded on a new document
 self.port.on("loadResponse", function(result) {
 	// Load the results DOM	
-	$("#ires ol").append(result);
+	$("#ires").append(result);
     //$("#center_col").html($("#center_col", resListDOM).html());
 });

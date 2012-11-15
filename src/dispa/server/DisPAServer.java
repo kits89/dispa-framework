@@ -1,8 +1,10 @@
 package dispa.server;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -32,23 +34,15 @@ public class DisPAServer {
 	/** Path where the index is placed */
 	private static String INDEX_DIR = "";
 
-	/** Constant for query messages */
-	private final static int QRY = 0;
-
-	/** Constant for web messages */
-	private final static int VST = 1;
-	private final static int ERR = 2;
-	private final static int OFF = 3;
-	private final static int RES = 4;
+	/** Opcode */
+	private final static byte QRY = 48;
+	private final static byte VST = 49;
+	private final static byte RES = 50;
+	private final static byte ERR = 51;
+	private final static byte OFF = 52;
+	
 
 	private final static String taxonomyFileName = "taxonomy.ser";
-
-	/**
-	 * Class to handle the connection with the plug-in
-	 * @uml.property  name="pluginConnection"
-	 * @uml.associationEnd  
-	 */
-	private static PluginConnection pluginConnection = null;
 
 	/**
 	 * @param args
@@ -139,31 +133,31 @@ public class DisPAServer {
 			ContextManager contextManager = new ContextManager(
 					new Classifier(searcher, taxonomy), cmd.hasOption("n"));
 
-			// Set up the plugin connection
-			pluginConnection = new PluginConnection(PORT);
-
+			// Create Socket
+			DatagramSocket socket = new DatagramSocket(PORT);
+			
 			// Results fetcher
 			ResultsFetcher resultsFecther = new ResultsFetcher();
 
 			try {			
 				while(true) {
 					System.out.println("[Dispa Server] - Ready. Listening...");
-					// Open requested connection
-					pluginConnection.open();
+					
+					// Create request
+					byte [] reqContent = new byte[512] ; 
+					DatagramPacket request = 
+							new DatagramPacket(reqContent, reqContent.length); 
+					
+					// Listen message
+					socket.receive(request); 
 
-					// Get message from plug-in
-					String msg = pluginConnection.getRequest();
-
-					// Parse message
-					String[] msgArray = msg.split("\\|");
-					int opCode = Integer.parseInt(msgArray[0]);							
-
+					byte opCode = reqContent[0];							
 					switch(opCode) {							
 					case QRY:
-						// If contents are a query
-						String queryText = msgArray[1];
+						// Get message
+						String queryText = new String(reqContent);
 						System.out.println("[DisPA Server] - Query: " + queryText);	
-
+						
 						// Search query in the cache
 						int qId = queryText.hashCode();
 						Query q = (Query) contextManager.queryCache.get(qId);
@@ -200,7 +194,7 @@ public class DisPAServer {
 							}
 
 							// Fetch results with given context and query
-							String[] results = resultsFecther.fetch(c, q);
+							String results = resultsFecther.fetch(c, q);
 
 							// Store results for that query
 							q.setResults(results);
@@ -212,14 +206,16 @@ public class DisPAServer {
 						taxonomy.addQuery(q.getCategory());
 
 						// Send results back
-						for (String r : q.getResults()) {
-							pluginConnection.send(RES + "|" + r);
-						}							
+					    byte [] respContent = (RES + "|" + q.getResults()).getBytes(); 
+						DatagramPacket response =
+								new DatagramPacket(respContent, respContent.length, 
+										InetAddress.getLocalHost(), PORT);
+						socket.send(response);						
 						break;
 
 						// If contents are a web resource
 					case VST:
-						String webURL = msgArray[1];
+						String webURL = "";
 						System.out.println("[DisPA Server] - Visit: " + webURL);
 						String category = webClassifier.classify(webURL);
 						System.out.println("[DisPA Server] - Category: " + category);							
@@ -238,19 +234,16 @@ public class DisPAServer {
 					}						
 				}		
 			} catch(Exception e) {
-				pluginConnection.send(Integer.toString(ERR));							
+				socket.close();						
 				contextManager.queryCache.dispose();
 				contextManager.contextCache.dispose();
 				taxonomy.save(taxonomyFileName);				
-				pluginConnection.close();
 				System.err.println("[DisPA Server] - An error ocurred: " + e.getMessage());
 				e.printStackTrace();
 			}
 		} catch (ParseException e) {
 			// oops, something went wrong
 			System.err.println("Parsing failed. " + e.getMessage() );
-		} catch (FileNotFoundException e) {
-			System.err.println("Error: the file was not found.");
 		} catch (IOException e) {
 			System.err.println("There was an error reading the file.");
 		} catch (Exception e) {

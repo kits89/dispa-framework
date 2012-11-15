@@ -57,8 +57,6 @@ public class ContextManager {
         	System.err.println("Problem putting query="
                + q.getText() + " in the cache, for key " + key + ": " + e.getCause());
         }
-        Query q2 = (Query) queryCache.get(key);
-        Query q3 = (Query) queryCache.get(2);
 	}
 
 	
