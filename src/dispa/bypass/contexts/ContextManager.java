@@ -16,7 +16,7 @@ import dispa.bypass.queries.Query;
 import dispa.bypass.virtualidentities.VirtualIdentityGenerator;
 
 public class ContextManager {	
-	public  JCS queryCache = null, contextCache = null;
+	public JCS queryCache = null, contextCache = null;
 	
 	VirtualIdentityGenerator vig = new VirtualIdentityGenerator();
 

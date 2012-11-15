@@ -195,6 +195,8 @@ public class DisPAServer {
 									System.err.println("Problem putting in the cache " +
 											"context with id=" + qId + ": " + e.getCause());
 								}
+							} else {
+								System.out.println("[DisPA Server] - Context was found in cache.");
 							}
 
 							// Fetch results with given context and query
@@ -202,6 +204,8 @@ public class DisPAServer {
 
 							// Store results for that query
 							q.setResults(results);
+						} else {
+							System.out.println("[DisPA Server] - Query was found in cache.");	
 						}
 
 						// Add query
@@ -224,6 +228,8 @@ public class DisPAServer {
 						System.out.println("[DisPA Server] - An error ocurred in the plugin.");
 					case OFF:
 						System.out.println("[DisPA Server] - Taxonomy has been updated.");
+						contextManager.queryCache.dispose();
+						contextManager.contextCache.dispose();
 						taxonomy.save(taxonomyFileName);					
 						break;
 
@@ -232,11 +238,13 @@ public class DisPAServer {
 					}						
 				}		
 			} catch(Exception e) {
-				pluginConnection.send(Integer.toString(ERR));
+				pluginConnection.send(Integer.toString(ERR));							
+				contextManager.queryCache.dispose();
+				contextManager.contextCache.dispose();
+				taxonomy.save(taxonomyFileName);				
+				pluginConnection.close();
 				System.err.println("[DisPA Server] - An error ocurred: " + e.getMessage());
 				e.printStackTrace();
-				taxonomy.save(taxonomyFileName);
-				pluginConnection.close();
 			}
 		} catch (ParseException e) {
 			// oops, something went wrong
