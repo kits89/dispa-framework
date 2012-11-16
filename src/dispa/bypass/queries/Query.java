@@ -19,7 +19,7 @@ public class Query implements Serializable {
 	}
 
 	String text = null;
-	String[] results = null;
+	String results = null;
 	String category = null;
 	
 	public String getCategory() {
@@ -35,10 +35,10 @@ public class Query implements Serializable {
 		this.id = newText.toLowerCase().hashCode();
 	}
 	
-	public void setResults(String[] newResults) {
+	public void setResults(String newResults) {
 		this.results = newResults;
 	}
-	public String[] getResults() {
+	public String getResults() {
 		return results;
 	}
 

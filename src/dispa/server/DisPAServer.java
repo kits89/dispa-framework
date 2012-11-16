@@ -200,7 +200,7 @@ public class DisPAServer {
 							}
 
 							// Fetch results with given context and query
-							String[] results = resultsFecther.fetch(c, q);
+							String results = resultsFecther.fetch(c, q);
 
 							// Store results for that query
 							q.setResults(results);
@@ -211,10 +211,8 @@ public class DisPAServer {
 						// Add query
 						taxonomy.addQuery(q.getCategory());
 
-						// Send results back
-						for (String r : q.getResults()) {
-							pluginConnection.send(RES + "|" + r);
-						}							
+						// Send results back						
+						pluginConnection.send(RES + "|" + q.getResults());						
 						break;
 
 						// If contents are a web resource
